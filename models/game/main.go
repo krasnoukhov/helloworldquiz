@@ -6,6 +6,7 @@ import (
   // "strconv"
   // "time"
   "language-game/initializers/redisPool"
+  "language-game/models/variant"
   // "github.com/astaxie/beego"
   "github.com/dchest/uniuri"
   "github.com/garyburd/redigo/redis"
@@ -40,6 +41,10 @@ func Get(objectId string) (object *Object, err error) {
   }
   
   return object, nil
+}
+
+func GetVariant(object *Object) (response *variant.Object) {
+  return variant.Get(variant.Objects["c"])
 }
 
 func Update(ObjectId string, updatedObject *Object) (object *Object, err error) {

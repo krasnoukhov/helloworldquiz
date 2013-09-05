@@ -26,7 +26,7 @@ func (this *GameController) Post() {
   object, err := game.Add(&newObject)
   if err == nil {
     this.SetSession("GameObjectId", object.ObjectId)
-    this.Data["json"] = &GameResponse{ object, variant.Get(variant.Objects["c"]) }
+    this.Data["json"] = &GameResponse{ object, game.GetVariant(object) }
   } else {
     this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
   }
@@ -38,7 +38,7 @@ func (this *GameController) Get() {
   object, err := Game(this)
   
   if err == nil {
-    this.Data["json"] = &GameResponse{ object, variant.Get(variant.Objects["c"]) }
+    this.Data["json"] = &GameResponse{ object, game.GetVariant(object) }
   } else {
     this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
   }
@@ -55,7 +55,7 @@ func (this *GameController) Put() {
     object, err = game.Update(object.ObjectId, &updatedObject)
     
     if err == nil {
-      this.Data["json"] = &GameResponse{ object, variant.Get(variant.Objects["c"]) }
+      this.Data["json"] = &GameResponse{ object, game.GetVariant(object) }
     } else {
       this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
     }
