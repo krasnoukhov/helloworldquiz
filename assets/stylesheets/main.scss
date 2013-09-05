@@ -1,22 +1,95 @@
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
 html, body {
   height: 100%;
 }
 
-body {
-  background: url("/public/images/connect.png");
-}
-
-a {
-  text-decoration: none;
+* {
+  font-family: 'Gafata', sans-serif;
 }
 
 .container {
-  width: 960px;
+  width: 800px;
   margin: 0 auto;
+}
+
+footer {
+  margin-top: 40px !important;
+  padding: 20px 0;
+  
+  p {
+    font-size: 1em;
+    margin: 0;
+  }
+}
+
+code * {
+  font-family: monospace, serif;
+}
+
+pre {
+  margin-top: 0;
+}
+
+.pure-button {
+  font-size: 110%;
+  font-weight: 600;
+  color: white;
+  padding: .5em 1.5em .65em;
+  border-radius: 8px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-stats {
+  font-size: 50%;
+}
+
+.pure-button-secondary {
+  background: rgb(66, 184, 221);
+}
+
+.pure-button-success {
+  background: rgb(28, 184, 65);
+}
+
+.pure-button-error {
+  background: #E43030;
+}
+
+.pure-button-large {
+  font-size: 150%;
 }
 
 h1 {
   text-align: center;
+  position: relative;
+  
+  a {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: .6em;
+    font-weight: 100;
+    position: absolute;
+    right: 0;
+    top: 8px;
+  }
 }
 
 .hero-unit {
@@ -41,6 +114,15 @@ h1 {
   }
 }
 
+.status {
+  text-align: center;
+  
+  span {
+    font-size: 1.4em;
+    padding: 0 8px;
+  }
+}
+
 .answers {
   ul {
     padding: 0;
@@ -49,7 +131,7 @@ h1 {
     
     li {
       display: inline-block;
-      margin: 0 10px;
+      margin: 0 7px;
     }
     
     &.result {
