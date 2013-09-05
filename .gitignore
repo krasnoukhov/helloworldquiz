@@ -26,3 +26,4 @@ language-game
 .DS_Store
 css/.sass-cache
 dump.rdb
+public/assets

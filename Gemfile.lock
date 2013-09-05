@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.3)
+    execjs (2.0.1)
+    libv8 (3.16.14.3)
+    ref (1.0.5)
+    sass (3.2.10)
+    therubyracer (0.12.0)
+      libv8 (~> 3.16.14.0)
+      ref
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  coffee-script
+  sass
+  therubyracer

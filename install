@@ -1,1 +1,0 @@
-curl -s https://raw.github.com/VividCortex/johnny-deps/master/bin/johnny_deps | bash
