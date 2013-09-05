@@ -4,8 +4,8 @@ import (
   "fmt"
   "errors"
   "encoding/json"
-  "language-game/models/game"
-  "language-game/models/variant"
+  "langgame/models/game"
+  "langgame/models/variant"
   "github.com/astaxie/beego"
 )
 

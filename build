@@ -5,12 +5,12 @@ export RELEASE=/tmp/game
 train
 bee pack
 mkdir -p $RELEASE
-mv language-game.tar.gz $RELEASE
+mv langgame.tar.gz $RELEASE
 
 cd $RELEASE
-tar -xzf language-game.tar.gz
-killall language-game
-nohup ./language-game &
+tar -xzf langgame.tar.gz
+killall langgame
+nohup ./langgame &
 
 unset GO_ENV
 unset RELEASE

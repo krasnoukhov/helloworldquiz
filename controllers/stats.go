@@ -1,7 +1,7 @@
 package controllers
 
 import (
-  "language-game/initializers/redisPool"
+  "langgame/initializers/redisPool"
   "github.com/astaxie/beego"
   "github.com/garyburd/redigo/redis"
 )

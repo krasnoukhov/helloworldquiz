@@ -22,7 +22,7 @@ _testmain.go
 *.exe
 
 # Project
-language-game
+langgame
 .DS_Store
 css/.sass-cache
 dump.rdb

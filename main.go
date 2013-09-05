@@ -4,7 +4,7 @@ import (
   "os"
   "net/http"
   "strings"
-  "language-game/controllers"
+  "langgame/controllers"
   "github.com/astaxie/beego"
   "github.com/krasnoukhov/train"
 )
