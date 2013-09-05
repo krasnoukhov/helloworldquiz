@@ -2,35 +2,37 @@ package variant
 
 import (
   "fmt"
-  "io"
+  // "io"
   "io/ioutil"
-  "crypto/md5"
+  // "crypto/md5"
   "math/rand"
+  "html"
   // "errors"
   // "github.com/astaxie/beego"
   "github.com/kylelemons/go-gypsy/yaml"
 )
 
 var (
-  Objects map[string]*Object
+  Objects    map[string]*Object
+  Keys       []string
 )
 
 type Object struct {
-  Key        string  `json:"-"`
-  Name       string  `json:"-"`
-  Hash       string
+  Key        string     `json:"-"`
+  Name       string     `json:"-"`
   Snippet    string
-  Variants   [3]string  `json:"-"`
-  Options    [3]*Option
+  Variants   []string   `json:"-"`
+  Options    []*Option
 }
 
 type Option struct {
-  Key        string
+  Key  string
   Name       string
 }
 
 func init() {
   Objects = make(map[string]*Object)
+  Keys = []string{}
   file, _ := yaml.ReadFile("models/variant/data.yml")
   
   for key, node := range file.Root.(yaml.Map) {
@@ -39,31 +41,29 @@ func init() {
     if err == nil {
       name := node.(yaml.Map)["name"].(yaml.Scalar).String()
       
-      hash := md5.New()
-      io.WriteString(hash, key)
-        
-      variants := [3]string{}
-      variants[0] = key
-      for idx, variant := range node.(yaml.Map)["variants"].(yaml.List) {
-        variants[idx+1] = variant.(yaml.Scalar).String()
+      variants := []string{}
+      variants = append(variants, key)
+      for _, variant := range node.(yaml.Map)["variants"].(yaml.List) {
+        variants = append(variants, variant.(yaml.Scalar).String())
       }
       
-      Objects[key] = &Object{ key, name, fmt.Sprintf("%x", hash.Sum(nil)), string(snippet[:]), variants, [3]*Option{} }
+      Objects[key] = &Object{ key, name, html.EscapeString(string(snippet[:])), variants, []*Option{} }
+      Keys = append(Keys, key)
     }
   }
 }
 
-func Get(originalObject *Object) (object *Object) {
-  object = originalObject
+func Shuffle(object *Object) (response *Object) {
+  response = &Object{ object.Key, object.Name, object.Snippet, append([]string{}, object.Variants...), []*Option{} }
   
-  for i := range object.Variants {
+  for i := range response.Variants {
     j := rand.Intn(i + 1)
-    object.Variants[i], object.Variants[j] = object.Variants[j], object.Variants[i]
+    response.Variants[i], response.Variants[j] = response.Variants[j], response.Variants[i]
   }
   
-  for i, variant := range object.Variants {
-    object.Options[i] = &Option{ Objects[variant].Key, Objects[variant].Name }
+  for _, variant := range response.Variants {
+    response.Options = append(response.Options, &Option{ Objects[variant].Key, Objects[variant].Name })
   }
   
-  return object
+  return response
 }

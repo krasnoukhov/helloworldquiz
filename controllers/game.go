@@ -3,10 +3,12 @@ package controllers
 import (
   "fmt"
   "errors"
-  "encoding/json"
+  // "encoding/json"
+  "langgame/initializers/redisPool"
   "langgame/models/game"
   "langgame/models/variant"
   "github.com/astaxie/beego"
+  "github.com/garyburd/redigo/redis"
 )
 
 type GameController struct {
@@ -14,19 +16,16 @@ type GameController struct {
 }
 
 type GameResponse struct {
-  Game *game.Object
-  Variant *variant.Object
+  Game      *game.Object
+  Variant   *variant.Object `json:",omitempty"`
+  Status    string          `json:",omitempty"`
 }
 
 func (this *GameController) Post() {
-  beego.Debug(variant.Objects)
-  var newObject game.Object
-  json.Unmarshal(this.Ctx.RequestBody, &newObject)
-  
-  object, err := game.Add(&newObject)
+  object, err := game.Add()
   if err == nil {
     this.SetSession("GameObjectId", object.ObjectId)
-    this.Data["json"] = &GameResponse{ object, game.GetVariant(object) }
+    this.Data["json"] = &GameResponse{ object, game.GetVariant(object), "ready" }
   } else {
     this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
   }
@@ -38,7 +37,7 @@ func (this *GameController) Get() {
   object, err := Game(this)
   
   if err == nil {
-    this.Data["json"] = &GameResponse{ object, game.GetVariant(object) }
+    this.Data["json"] = &GameResponse{ object, game.GetVariant(object), "ready" }
   } else {
     this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
   }
@@ -47,17 +46,32 @@ func (this *GameController) Get() {
 }
 
 func (this *GameController) Put() {
-  var updatedObject game.Object
-  json.Unmarshal(this.Ctx.RequestBody, &updatedObject)
-  
   object, err := Game(this)
+  
   if err == nil {
-    object, err = game.Update(object.ObjectId, &updatedObject)
+    conn := redisPool.Get()
+    defer conn.Close()
     
-    if err == nil {
-      this.Data["json"] = &GameResponse{ object, game.GetVariant(object) }
+    option := this.GetString("Option")
+    game.SetVariant(object, option)
+    
+    highest, _ := redis.Int(conn.Do("GET", "highest"))
+    if object.Score > highest {
+      conn.Do("SET", "highest", object.Score)
+    }
+    
+    if object.Lives <= 0 {
+      this.Data["json"] = &GameResponse{ object, nil, "died" }
+      conn.Do("INCR", "died")
     } else {
-      this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
+      variant := game.GetVariant(object)
+      
+      if variant != nil {
+        this.Data["json"] = &GameResponse{ object, game.GetVariant(object), "ready" }
+      } else {
+        this.Data["json"] = &GameResponse{ object, nil, "survived" }
+        conn.Do("INCR", "survived")
+      }
     }
   } else {
     this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
