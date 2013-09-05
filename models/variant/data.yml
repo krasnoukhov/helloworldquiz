@@ -1,24 +1,29 @@
 abap:
   name: ABAP
+  variants:
+    - cobol
 as3:
   name: ActionScript
   variants:
-    - c
-    - cpp
+    - java
 ada:
   name: Ada
-apex:
-  name: Apex
+  variants:
+    - pascal
+    - delphi
 applescript:
   name: AppleScript
+  variants:
+    - javascript
 arc:
   name: Arc
-arduino:
-  name: Arduino
-aspx-vb:
-  name: ASP
+  variants:
+    - common-lisp
 nasm:
   name: Assembly
+  variants:
+    - c
+    - tcl
 augeas:
   name: Augeas
 autohotkey:
@@ -50,6 +55,10 @@ clips:
   name: CLIPS
 clojure:
   name: Clojure
+cobol:
+  name: COBOL
+  variants:
+    - abap
 coffeescript:
   name: CoffeeScript
 cfm:
@@ -64,10 +73,11 @@ d:
   name: D
 dart:
   name: Dart
-dcpu-16-asm:
-  name: DCPU-16 ASM
 delphi:
   name: Delphi
+  variants:
+    - ada
+    - pascal
 dot:
   name: DOT
 dylan:
@@ -112,6 +122,9 @@ ioke:
   name: Ioke
 java:
   name: Java
+  variants:
+    - as3
+    - javascript
 javascript:
   name: JavaScript
 julia:
@@ -162,6 +175,11 @@ openedge-abl:
   name: OpenEdge ABL
 parrot:
   name: Parrot
+pascal:
+  name: Pascal
+  variants:
+    - ada
+    - delphi
 perl:
   name: Perl
 php:
@@ -186,8 +204,6 @@ r:
   name: R
 racket:
   name: Racket
-ragel-in-ruby-host:
-  name: Ragel in Ruby Host
 rebol:
   name: Rebol
 rouge:

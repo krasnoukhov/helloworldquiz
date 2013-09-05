@@ -6,7 +6,7 @@ import (
   "math/rand"
   "langgame/initializers/redisPool"
   "langgame/models/variant"
-  // "github.com/astaxie/beego"
+  "github.com/astaxie/beego"
   "github.com/dchest/uniuri"
   "github.com/garyburd/redigo/redis"
 )
@@ -44,6 +44,7 @@ func Get(objectId string) (response *Object, err error) {
   
   data, err := redis.Bytes(conn.Do("HGET", "games", objectId))
   if err != nil {
+    beego.Critical(err)
     return nil, errors.New("Can't get object")
   }
   
@@ -103,6 +104,7 @@ func Set(object *Object) (err error) {
   data := Dump(object)
   _, err = conn.Do("HSET", "games", object.ObjectId, data)
   if err != nil {
+    beego.Critical(err)
     return errors.New("Can't store object")
   }
   

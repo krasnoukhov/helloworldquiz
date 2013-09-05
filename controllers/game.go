@@ -69,12 +69,16 @@ func (this *GameController) Put() {
     
     highest, _ := redis.Int(conn.Do("GET", "highest"))
     if object.Score > highest {
-      conn.Do("SET", "highest", object.Score)
+      if _, err := conn.Do("SET", "highest", object.Score); err != nil {
+        beego.Critical(err)
+      }
     }
     
     if object.Lives <= 0 {
       this.Data["json"] = &GameResponse{ object, nil, correct, "died" }
-      conn.Do("INCR", "died")
+      if _, err := conn.Do("INCR", "died"); err != nil {
+        beego.Critical(err)
+      }
     } else {
       variant := game.GetVariant(object)
       
@@ -82,7 +86,9 @@ func (this *GameController) Put() {
         this.Data["json"] = &GameResponse{ object, game.GetVariant(object), correct, "ready" }
       } else {
         this.Data["json"] = &GameResponse{ object, nil, correct, "survived" }
-        conn.Do("INCR", "survived")
+        if _, err := conn.Do("INCR", "survived"); err != nil {
+          beego.Critical(err)
+        }
       }
     }
   } else {

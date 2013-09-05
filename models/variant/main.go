@@ -42,20 +42,24 @@ func init() {
   file, _ := yaml.ReadFile("models/variant/data.yml")
   
   for key, node := range file.Root.(yaml.Map) {
-    snippet, err := ioutil.ReadFile(fmt.Sprintf("models/variant/data/%s", key))
+    name := node.(yaml.Map)["name"].(yaml.Scalar).String()
     
+    source, err := ioutil.ReadFile(fmt.Sprintf("models/variant/data/%s", key))
+    snippet := ""
     if err == nil {
-      name := node.(yaml.Map)["name"].(yaml.Scalar).String()
-      
-      variants := []string{}
-      variants = append(variants, key)
-      for _, variant := range node.(yaml.Map)["variants"].(yaml.List) {
+      snippet = html.EscapeString(string(source[:]))
+    }
+    
+    variants := []string{}
+    variants = append(variants, key)
+    if list, ok := node.(yaml.Map)["variants"]; ok {
+      for _, variant := range list.(yaml.List) {
         variants = append(variants, variant.(yaml.Scalar).String())
       }
-      
-      Objects[key] = &Object{ key, name, html.EscapeString(string(snippet[:])), variants, []*Option{} }
-      Keys = append(Keys, key)
     }
+    
+    Objects[key] = &Object{ key, name, snippet, variants, []*Option{} }
+    Keys = append(Keys, key)
   }
 }
 
