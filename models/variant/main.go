@@ -20,7 +20,13 @@ type Object struct {
   Name       string  `json:"-"`
   Hash       string
   Snippet    string
-  Variants   [3]string
+  Variants   [3]string  `json:"-"`
+  Options    [3]*Option
+}
+
+type Option struct {
+  Key        string
+  Name       string
 }
 
 func init() {
@@ -42,7 +48,7 @@ func init() {
         variants[idx+1] = variant.(yaml.Scalar).String()
       }
       
-      Objects[key] = &Object{ key, name, fmt.Sprintf("%x", hash.Sum(nil)), string(snippet[:]), variants }
+      Objects[key] = &Object{ key, name, fmt.Sprintf("%x", hash.Sum(nil)), string(snippet[:]), variants, [3]*Option{} }
     }
   }
 }
@@ -53,6 +59,10 @@ func Get(originalObject *Object) (object *Object) {
   for i := range object.Variants {
     j := rand.Intn(i + 1)
     object.Variants[i], object.Variants[j] = object.Variants[j], object.Variants[i]
+  }
+  
+  for i, variant := range object.Variants {
+    object.Options[i] = &Option{ Objects[variant].Key, Objects[variant].Name }
   }
   
   return object
