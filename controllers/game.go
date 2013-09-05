@@ -17,15 +17,16 @@ type GameController struct {
 
 type GameResponse struct {
   Game      *game.Object
-  Variant   *variant.Object `json:",omitempty"`
-  Status    string          `json:",omitempty"`
+  Variant   *variant.Object     `json:",omitempty"`
+  Correct   *variant.DumpObject `json:",omitempty"`
+  Status    string              `json:",omitempty"`
 }
 
 func (this *GameController) Post() {
   object, err := game.Add()
   if err == nil {
     this.SetSession("GameObjectId", object.ObjectId)
-    this.Data["json"] = &GameResponse{ object, game.GetVariant(object), "ready" }
+    this.Data["json"] = &GameResponse{ object, game.GetVariant(object), nil, "ready" }
   } else {
     this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
   }
@@ -37,7 +38,7 @@ func (this *GameController) Get() {
   object, err := Game(this)
   
   if err == nil {
-    this.Data["json"] = &GameResponse{ object, game.GetVariant(object), "ready" }
+    this.Data["json"] = &GameResponse{ object, game.GetVariant(object), nil, "ready" }
   } else {
     this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
   }
@@ -53,6 +54,17 @@ func (this *GameController) Put() {
     defer conn.Close()
     
     option := this.GetString("Option")
+    correct := &variant.DumpObject{}
+    
+    if object.Current != "" {
+      correct = variant.ConvertToDumpObject(variant.Objects[object.Current])
+      if object.Current == option {
+        correct = nil
+      }
+    } else {
+      correct = nil
+    }
+    
     game.SetVariant(object, option)
     
     highest, _ := redis.Int(conn.Do("GET", "highest"))
@@ -61,15 +73,15 @@ func (this *GameController) Put() {
     }
     
     if object.Lives <= 0 {
-      this.Data["json"] = &GameResponse{ object, nil, "died" }
+      this.Data["json"] = &GameResponse{ object, nil, correct, "died" }
       conn.Do("INCR", "died")
     } else {
       variant := game.GetVariant(object)
       
       if variant != nil {
-        this.Data["json"] = &GameResponse{ object, game.GetVariant(object), "ready" }
+        this.Data["json"] = &GameResponse{ object, game.GetVariant(object), correct, "ready" }
       } else {
-        this.Data["json"] = &GameResponse{ object, nil, "survived" }
+        this.Data["json"] = &GameResponse{ object, nil, correct, "survived" }
         conn.Do("INCR", "survived")
       }
     }

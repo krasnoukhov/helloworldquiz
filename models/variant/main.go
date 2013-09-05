@@ -25,8 +25,14 @@ type Object struct {
   Options    []*Option
 }
 
+type DumpObject struct {
+  Key        string
+  Name       string
+  Snippet    string
+}
+
 type Option struct {
-  Key  string
+  Key        string
   Name       string
 }
 
@@ -51,6 +57,10 @@ func init() {
       Keys = append(Keys, key)
     }
   }
+}
+
+func ConvertToDumpObject(object *Object) (response *DumpObject) {
+  return &DumpObject{ object.Key, object.Name, object.Snippet }
 }
 
 func Shuffle(object *Object) (response *Object) {
