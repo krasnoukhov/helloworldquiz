@@ -25,3 +25,4 @@ _testmain.go
 language-name
 .DS_Store
 css/.sass-cache
+dump.rdb
