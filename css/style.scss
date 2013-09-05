@@ -1,0 +1,65 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background: url("../img/connect.png");
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.hero-unit {
+  position: absolute; 
+  height: 100%; 
+  width: 100%;
+  display: table;
+
+  .inner {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2em;
+    margin-top: 0;
+  }
+  
+  p {
+    font-size: 1.3em;
+  }
+}
+
+.answers {
+  ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    
+    li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+    
+    &.result {
+      display: none;
+    }
+  }
+  
+  h2 {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+  }
+}

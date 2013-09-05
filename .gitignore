@@ -23,3 +23,5 @@ _testmain.go
 
 # Project
 language-name
+.DS_Store
+css/.sass-cache
