@@ -24,6 +24,7 @@ type StatsObject struct {
 type StatsVariant struct {
   Key             string
   Score           int
+  OppositeScore   int
   Name            string
   Value           string
 }
@@ -66,10 +67,9 @@ func FindMaxVariant(conn redis.Conn, source string, opposite string) (response *
     }
   }
   
-  oppositeScore, _ := redis.Int(conn.Do("HGET", opposite, response.Key))
-  beego.Debug(oppositeScore)
+  response.OppositeScore, _ = redis.Int(conn.Do("HGET", opposite, response.Key))
   response.Name = variant.Objects[response.Key].Name
-  response.Value = fmt.Sprintf("%.1f", (float64(response.Score) / float64(response.Score + oppositeScore)) * 100)
+  response.Value = fmt.Sprintf("%.1f", (float64(response.Score) / float64(response.Score + response.OppositeScore)) * 100)
   
   return response
 }
