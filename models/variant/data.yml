@@ -1,0 +1,248 @@
+abap:
+  name: ABAP
+as3:
+  name: ActionScript
+  variants:
+    - java
+    - coffeescript
+ada:
+  name: Ada
+apex:
+  name: Apex
+applescript:
+  name: AppleScript
+arc:
+  name: Arc
+arduino:
+  name: Arduino
+aspx-vb:
+  name: ASP
+nasm:
+  name: Assembly
+augeas:
+  name: Augeas
+autohotkey:
+  name: AutoHotkey
+awk:
+  name: Awk
+boo:
+  name: Boo
+bro:
+  name: Bro
+c:
+  name: C
+  variants:
+    - cpp
+    - csharp
+csharp:
+  name: "C#"
+  variants:
+    - c
+    - cpp
+cpp:
+  name: C++
+  variants:
+    - c
+    - csharp
+ceylon:
+  name: Ceylon
+clips:
+  name: CLIPS
+clojure:
+  name: Clojure
+coffeescript:
+  name: CoffeeScript
+cfm:
+  name: ColdFusion
+common-lisp:
+  name: Common Lisp
+coq:
+  name: Coq
+css:
+  name: CSS
+d:
+  name: D
+dart:
+  name: Dart
+dcpu-16-asm:
+  name: DCPU-16 ASM
+delphi:
+  name: Delphi
+dot:
+  name: DOT
+dylan:
+  name: Dylan
+ec:
+  name: eC
+ecl:
+  name: Ecl
+eiffel:
+  name: Eiffel
+elixir:
+  name: Elixir
+emacs-lisp:
+  name: Emacs Lisp
+erlang:
+  name: Erlang
+fsharp:
+  name: F#
+factor:
+  name: Factor
+fancy:
+  name: Fancy
+fantom:
+  name: Fantom
+forth:
+  name: Forth
+fortran:
+  name: FORTRAN
+go:
+  name: Go
+gosu:
+  name: Gosu
+groovy:
+  name: Groovy
+haskell:
+  name: Haskell
+haxe:
+  name: Haxe
+io:
+  name: Io
+ioke:
+  name: Ioke
+java:
+  name: Java
+javascript:
+  name: JavaScript
+julia:
+  name: Julia
+kotlin:
+  name: Kotlin
+lasso:
+  name: Lasso
+livescript:
+  name: LiveScript
+logos:
+  name: Logos
+logtalk:
+  name: Logtalk
+lua:
+  name: Lua
+m:
+  name: M
+matlab:
+  name: Matlab
+max%2Fmsp:
+  name: Max
+ruby:
+  name: Mirah
+monkey:
+  name: Monkey
+moonscript:
+  name: MoonScript
+nemerle:
+  name: Nemerle
+nimrod:
+  name: Nimrod
+nu:
+  name: Nu
+objective-c:
+  name: Objective-C
+objective-j:
+  name: Objective-J
+ocaml:
+  name: OCaml
+omgrofl:
+  name: Omgrofl
+ooc:
+  name: ooc
+opa:
+  name: Opa
+openedge-abl:
+  name: OpenEdge ABL
+parrot:
+  name: Parrot
+perl:
+  name: Perl
+php:
+  name: PHP
+pike:
+  name: Pike
+pogoscript:
+  name: PogoScript
+powershell:
+  name: PowerShell
+processing:
+  name: Processing
+prolog:
+  name: Prolog
+puppet:
+  name: Puppet
+pure-data:
+  name: Pure Data
+python:
+  name: Python
+r:
+  name: R
+racket:
+  name: Racket
+ragel-in-ruby-host:
+  name: Ragel in Ruby Host
+rebol:
+  name: Rebol
+rouge:
+  name: Rouge
+ruby:
+  name: Ruby
+rust:
+  name: Rust
+scala:
+  name: Scala
+scheme:
+  name: Scheme
+scilab:
+  name: Scilab
+self:
+  name: Self
+bash:
+  name: Shell
+slash:
+  name: Slash
+smalltalk:
+  name: Smalltalk
+standard-ml:
+  name: Standard ML
+supercollider:
+  name: SuperCollider
+tcl:
+  name: Tcl
+turing:
+  name: Turing
+txl:
+  name: TXL
+typescript:
+  name: TypeScript
+vala:
+  name: Vala
+verilog:
+  name: Verilog
+vhdl:
+  name: VHDL
+vim:
+  name: VimL
+visual-basic:
+  name: Visual Basic
+wisp:
+  name: wisp
+xc:
+  name: XC
+xml:
+  name: XML
+xproc:
+  name: XProc
+xquery:
+  name: XQuery
+xslt:
+  name: XSLT
+xtend:
+  name: Xtend"
