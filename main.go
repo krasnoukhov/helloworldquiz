@@ -27,6 +27,8 @@ func main() {
   beego.Errorhandler("404", func(w http.ResponseWriter, r *http.Request) {
     if strings.HasPrefix(r.URL.Path, "/assets") {
       train.ServeRequest(w, r)
+    } else {
+      http.Redirect(w, r, "/", 302)
     }
   })
   

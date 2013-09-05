@@ -77,7 +77,7 @@ func Game(this *GameController) (object *game.Object, err error) {
     } else {
       return nil, err
     }
-  }else{
+  } else {
     return nil, errors.New("No game")
   }
 }
