@@ -1,4 +1,16 @@
-curl -s https://raw.github.com/VividCortex/johnny-deps/master/bin/johnny_deps | bash
-go build -o $GOPATH/bin/train github.com/krasnoukhov/train/cmd
-go get github.com/astaxie/bee
-bundle
+export GO_ENV=prod
+export RELEASE=/tmp/game
+
+./deps
+train
+bee pack
+mkdir -p $RELEASE
+mv language-game.tar.gz $RELEASE
+
+cd $RELEASE
+tar -xzf language-game.tar.gz
+killall language-game
+nohup ./language-game &
+
+unset GO_ENV
+unset RELEASE

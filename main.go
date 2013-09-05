@@ -1,6 +1,7 @@
 package main
 
 import (
+  "os"
   "net/http"
   "strings"
   "language-game/controllers"
@@ -10,6 +11,9 @@ import (
 
 func main() {
   // Config
+  if os.Getenv("GO_ENV") == "prod" {
+    beego.RunMode = "prod"
+  }
   beego.SessionProvider = "redis"
   beego.SessionSavePath = beego.AppConfig.String("redis")
   
