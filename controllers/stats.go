@@ -16,14 +16,16 @@ type StatsController struct {
 type StatsObject struct {
   Games           string
   CompletionRate  string
-  Easiest         *StatsPair
-  Hardest         *StatsPair
+  Easiest         *StatsVariant
+  Hardest         *StatsVariant
   Highest         string
 }
 
-type StatsPair struct {
+type StatsVariant struct {
   Key             string
-  Value           int
+  Score           int
+  Name            string
+  Value           string
 }
 
 func (this *StatsController) Get() {
@@ -41,28 +43,33 @@ func (this *StatsController) Get() {
   highest, _ := redis.Int(conn.Do("GET", "highest"))
   stats.Highest = fmt.Sprintf("%v", highest)
   
-  stats.Easiest = FindMaxVariant(conn, "success")
-  stats.Hardest = FindMaxVariant(conn, "failure")
+  stats.Easiest = FindMaxVariant(conn, "success", "failure")
+  stats.Hardest = FindMaxVariant(conn, "failure", "success")
   
   this.Data["json"] = stats
   this.ServeJson()
 }
 
-func FindMaxVariant(conn redis.Conn, hash string) (response *StatsPair) {
-  variants, err := redis.Values(conn.Do("HGETALL", hash))
-  response = &StatsPair{}
+func FindMaxVariant(conn redis.Conn, source string, opposite string) (response *StatsVariant) {
+  variants, err := redis.Values(conn.Do("HGETALL", source))
+  response = &StatsVariant{}
   
   for k, _score := range variants {
     if k % 2 == 1 {
       score, _ := redis.Int(_score, err)
-      if score > response.Value {
+      if score > response.Score {
         key, _ := redis.String(variants[k-1], err)
         
-        response.Key = variant.Objects[key].Name
-        response.Value = score
+        response.Key = key
+        response.Score = score
       }
     }
   }
+  
+  oppositeScore, _ := redis.Int(conn.Do("HGET", opposite, response.Key))
+  beego.Debug(oppositeScore)
+  response.Name = variant.Objects[response.Key].Name
+  response.Value = fmt.Sprintf("%.1f", (float64(response.Score) / float64(response.Score + oppositeScore)) * 100)
   
   return response
 }
