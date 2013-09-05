@@ -3,8 +3,8 @@ abap:
 as3:
   name: ActionScript
   variants:
-    - java
-    - coffeescript
+    - c
+    - cpp
 ada:
   name: Ada
 apex:
