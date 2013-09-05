@@ -13,6 +13,11 @@ type GameController struct {
   beego.Controller
 }
 
+type GameResponse struct {
+  Game *game.Object
+  Variant *variant.Object
+}
+
 func (this *GameController) Post() {
   beego.Debug(variant.Objects)
   var newObject game.Object
@@ -21,8 +26,7 @@ func (this *GameController) Post() {
   object, err := game.Add(&newObject)
   if err == nil {
     this.SetSession("GameObjectId", object.ObjectId)
-    this.Ctx.WriteString(game.Dump(object))
-    return
+    this.Data["json"] = &GameResponse{ object, variant.Get(variant.Objects["c"]) }
   } else {
     this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
   }
@@ -34,8 +38,7 @@ func (this *GameController) Get() {
   object, err := Game(this)
   
   if err == nil {
-    this.Ctx.WriteString(game.Dump(object))
-    return
+    this.Data["json"] = &GameResponse{ object, variant.Get(variant.Objects["c"]) }
   } else {
     this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
   }
@@ -52,8 +55,7 @@ func (this *GameController) Put() {
     object, err = game.Update(object.ObjectId, &updatedObject)
     
     if err == nil {
-      this.Ctx.WriteString(game.Dump(object))
-      return
+      this.Data["json"] = &GameResponse{ object, variant.Get(variant.Objects["c"]) }
     } else {
       this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
     }

@@ -2,7 +2,10 @@ package variant
 
 import (
   "fmt"
+  "io"
   "io/ioutil"
+  "crypto/md5"
+  "math/rand"
   // "errors"
   // "github.com/astaxie/beego"
   "github.com/kylelemons/go-gypsy/yaml"
@@ -13,10 +16,11 @@ var (
 )
 
 type Object struct {
-  Key        string
-  Name       string
+  Key        string  `json:"-"`
+  Name       string  `json:"-"`
+  Hash       string
   Snippet    string
-  Variants   [2]string
+  Variants   [3]string
 }
 
 func init() {
@@ -28,12 +32,28 @@ func init() {
     
     if err == nil {
       name := node.(yaml.Map)["name"].(yaml.Scalar).String()
-      variants := [2]string{}
+      
+      hash := md5.New()
+      io.WriteString(hash, key)
+        
+      variants := [3]string{}
+      variants[0] = key
       for idx, variant := range node.(yaml.Map)["variants"].(yaml.List) {
-        variants[idx] = variant.(yaml.Scalar).String()
+        variants[idx+1] = variant.(yaml.Scalar).String()
       }
       
-      Objects[key] = &Object{ key, name, string(snippet[:]), variants }
+      Objects[key] = &Object{ key, name, fmt.Sprintf("%x", hash.Sum(nil)), string(snippet[:]), variants }
     }
   }
+}
+
+func Get(originalObject *Object) (object *Object) {
+  object = originalObject
+  
+  for i := range object.Variants {
+    j := rand.Intn(i + 1)
+    object.Variants[i], object.Variants[j] = object.Variants[j], object.Variants[i]
+  }
+  
+  return object
 }
