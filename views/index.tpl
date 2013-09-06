@@ -12,14 +12,14 @@
   <body>
     <!-- <div class="hero-unit">
       <div class="inner">
-        <h1>Programming Languages Quiz</h1>
+        <h1>{{ .title }}</h1>
         <p>Recognize programming language by code snippet</p>
         <a class="pure-button pure-button-secondary pure-button-large" href="game.html">Play</a>
       </div>
     </div> -->
     
     <div class="container">
-      <h1 class="clearfix">Programming Languages Quiz <a href="#">Stats</a></h1>
+      <h1 class="clearfix">{{ .title }} <a href="#">Stats</a></h1>
       <div class="status">
         <span>Lives: 3</span>
         <span>Score: 100</span>
