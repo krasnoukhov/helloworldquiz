@@ -3,13 +3,18 @@
   <head>
     <title>{{ .title }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="http://{{ .host }}/public/favicon.ico" />
+    <link rel="icon" sizes="16x16 32x32" href="http://{{ .host }}/public/favicon.ico">
     <meta property="og:title" content="{{ .caption }}"/>
+    <meta property="og:description" content="{{ .description }}"/>
     <meta property="og:url" content="http://{{ .host }}"/>
-    <meta property="og:image" content="http://{{ .host }}/icon.png"/>
+    <meta property="og:image" content="http://{{ .host }}/public/icon.png"/>
     
     <script type="text/javascript">
       var Config = {
         title: "{{ .title }}",
+        caption: "{{ .caption }}",
+        description: "{{ .description }}",
         host: "{{ .host }}"
       }
     </script>

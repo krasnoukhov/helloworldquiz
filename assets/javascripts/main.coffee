@@ -42,11 +42,17 @@ App.GameController = Ember.ObjectController.extend($.extend(
   isLoading: false
   response: null
   waitResponse: null
+  
   hasSurvived: (->
     return false unless this.get("response")
     this.get("response").status == "survived"
   ).property("response")
-    
+  
+  highlightedSnippet: (->
+    return "" unless this.get("response")
+    snippet = this.get("response").variant.snippet
+    hljs.highlightAuto(snippet).value
+  ).property("response")
   
   load: ->
     self = this

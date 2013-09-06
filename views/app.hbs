@@ -6,7 +6,7 @@
   <div class="hero-unit" {{bind-attr class="isLoading"}}>
     <div class="inner">
       <h1>{{title}}</h1>
-      <p>Recognize programming language by "Hello World" code snippet</p>
+      <p>{{description}}</p>
       <a class="action-button pure-button pure-button-secondary pure-button-large" {{action "play"}}>Play</a>
     </div>
   </div>
@@ -27,7 +27,7 @@
         
         {{#with variant}}
           <pre>
-            <code>{{{snippet}}}</code>
+            <code>{{{../../../highlightedSnippet}}}</code>
           </pre>
           
           <div class="answers">

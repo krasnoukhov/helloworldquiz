@@ -6,7 +6,6 @@ import (
   "io/ioutil"
   // "crypto/md5"
   "math/rand"
-  "html"
   // "errors"
   // "github.com/astaxie/beego"
   "github.com/kylelemons/go-gypsy/yaml"
@@ -47,7 +46,7 @@ func init() {
     source, err := ioutil.ReadFile(fmt.Sprintf("models/variant/data/%s", key))
     snippet := ""
     if err == nil {
-      snippet = html.EscapeString(string(source[:]))
+      snippet = string(source[:])
     }
     
     variants := []string{}
