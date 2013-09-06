@@ -2,5 +2,3 @@
 //= require javascripts/libs/jquery
 //= require javascripts/libs/handlebars
 //= require javascripts/libs/ember
-
-hljs.initHighlightingOnLoad()

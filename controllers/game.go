@@ -16,10 +16,10 @@ type GameController struct {
 }
 
 type GameResponse struct {
-  Game      *game.Object
-  Variant   *variant.Object     `json:",omitempty"`
-  Correct   *variant.DumpObject `json:",omitempty"`
-  Status    string              `json:",omitempty"`
+  Game      *game.Object        `json:"game"`
+  Variant   *variant.Object     `json:"variant"`
+  Correct   *variant.DumpObject `json:"correct"`
+  Status    string              `json:"status"`
 }
 
 func (this *GameController) Post() {

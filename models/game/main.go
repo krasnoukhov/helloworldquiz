@@ -12,19 +12,19 @@ import (
 )
 
 type Object struct {
-  ObjectId   string
-  Score      int
-  Lives      int
+  ObjectId   string   `json:"object_id"`
+  Score      int      `json:"score"`
+  Lives      int      `json:"lives"`
   Completed  []string `json:"-"`
   Current    string   `json:"-"`
 }
 
 type DumpObject struct {
-  ObjectId   string
-  Score      int
-  Lives      int
-  Completed  []string
-  Current    string
+  ObjectId   string   `json:"object_id"`
+  Score      int      `json:"score"`
+  Lives      int      `json:"lives"`
+  Completed  []string `json:"completed"`
+  Current    string   `json:"current"`
 }
 
 func Add() (object *Object, err error) {

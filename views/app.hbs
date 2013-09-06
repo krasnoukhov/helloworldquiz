@@ -7,7 +7,11 @@
     <div class="inner">
       <h1>{{title}}</h1>
       <p>Recognize programming language by "Hello World" code snippet</p>
-      <a class="pure-button pure-button-secondary pure-button-large" href="/#/game">Play</a>
+      {{#if isLoading}}
+        <a class="pure-button pure-button-secondary pure-button-large" disabled>Play</a>
+      {{else}}
+        <a class="pure-button pure-button-secondary pure-button-large" {{action "play"}}>Play</a>
+      {{/if}}
     </div>
   </div>
 </script>
@@ -16,48 +20,33 @@
   <div class="container">
     {{partial "header"}}
     
-    <div class="status">
-      <span>Lives: 3</span>
-      <span>Score: 100</span>
-    </div>
-    
-    <pre>
-      <code>
-        package org.example.dummy {
-            import org.dummy.*;
-  
-            /*define package inline interface*/
-            public interface IFooBarzable {
-                public function foo(... pairs):Array;
-            }
-  
-            public class FooBar implements IFooBarzable {
-                static private var cnt:uint = 0;
-                private var bar:String;
-  
-                //constructor
-                public function TestBar(bar:String):void {
-                    bar = bar;
-                    ++cnt;
-                }
-  
-                public function foo(... pairs):Array {
-                    pairs.push(bar);
-                    return pairs;
-                }
-            }
-        }
-      </code>
-    </pre>
-    
-    <div class="answers">
-      <ul class="answer-types">
-        <li><a class="pure-button pure-button-secondary" href="#">C++</a></li>
-        <li><a class="pure-button pure-button-secondary" href="#">Java</a></li>
-        <li><a class="pure-button pure-button-secondary correct" href="#">ActionScript</a></li>
-      </ul>
-      <ul class="result"></ul>
-    </div>
+    {{#with response}}
+      <div class="status">
+        {{#with game}}
+        <span>Lives: {{lives}}</span>
+        <span>Score: {{score}}</span>
+        {{/with}}
+      </div>
+      
+      {{#if variant}}
+        {{#with variant}}
+        <pre>
+          <code>
+            {{{snippet}}}
+          </code>
+        </pre>
+        
+        <div class="answers">
+          <ul class="answer-types">
+            {{#each options}}
+              <li><a class="pure-button pure-button-secondary" href="#">{{name}}</a></li>
+            {{/each}}
+          </ul>
+          <ul class="result"></ul>
+        </div>
+        {{/with}}
+      {{/if}}
+    {{/with}}
   </div>
   
   {{partial "footer"}}

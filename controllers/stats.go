@@ -14,20 +14,20 @@ type StatsController struct {
 }
 
 type StatsObject struct {
-  Variants        string
-  Games           string
-  CompletionRate  string
-  Easiest         *StatsVariant
-  Hardest         *StatsVariant
-  Highest         string
+  Variants        string        `json:"variants"`
+  Games           string        `json:"games"`
+  CompletionRate  string        `json:"completion_rate"`
+  Easiest         *StatsVariant `json:"easiest"`
+  Hardest         *StatsVariant `json:"hardest"`
+  Highest         string        `json:"highest"`
 }
 
 type StatsVariant struct {
-  Key             string
-  Score           int
-  OppositeScore   int
-  Name            string
-  Value           string
+  Key             string        `json:"key"`
+  Score           int           `json:"score"`
+  OppositeScore   int           `json:"opposite_score"`
+  Name            string        `json:"name"`
+  Value           string        `json:"value"`
 }
 
 func (this *StatsController) Get() {

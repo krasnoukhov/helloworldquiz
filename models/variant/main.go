@@ -20,20 +20,20 @@ var (
 type Object struct {
   Key        string     `json:"-"`
   Name       string     `json:"-"`
-  Snippet    string
+  Snippet    string     `json:"snippet"`
   Variants   []string   `json:"-"`
-  Options    []*Option
+  Options    []*Option  `json:"options"`
 }
 
 type DumpObject struct {
-  Key        string
-  Name       string
-  Snippet    string
+  Key        string     `json:"key"`
+  Name       string     `json:"name"`
+  Snippet    string     `json:"snippet"`
 }
 
 type Option struct {
-  Key        string
-  Name       string
+  Key        string     `json:"key"`
+  Name       string     `json:"name"`
 }
 
 func init() {
