@@ -24,23 +24,32 @@ nasm:
   variants:
     - c
     - tcl
-augeas:
-  name: Augeas
-autohotkey:
-  name: AutoHotkey
 awk:
   name: Awk
-boo:
-  name: Boo
-bro:
-  name: Bro
+  variants:
+    - perl
+befunge:
+  name: Befunge
+  variants:
+    - lolcode
+    - brainfuck
+brainfuck:
+  name: Brainfuck
+  variants:
+    - befunge
+    - lolcode
 c:
   name: C
   variants:
     - cpp
     - csharp
+chef:
+  name: Chef
+  variants:
+    - shakespeare
+    - brainfuck
 csharp:
-  name: "C#"
+  name: C#
   variants:
     - c
     - cpp
@@ -49,77 +58,104 @@ cpp:
   variants:
     - c
     - csharp
-ceylon:
-  name: Ceylon
-clips:
-  name: CLIPS
 clojure:
   name: Clojure
+  variants:
+    - common-lisp
+    - java
 cobol:
   name: COBOL
   variants:
     - abap
 coffeescript:
   name: CoffeeScript
-cfm:
-  name: ColdFusion
+  variants:
+    - javascript
+    - applescript
 common-lisp:
   name: Common Lisp
-coq:
-  name: Coq
-css:
-  name: CSS
+  variants:
+    - elixir
+    - clojure
 d:
   name: D
+  variants:
+    - cpp
+    - csharp
 dart:
   name: Dart
+  variants:
+    - c
+    - go
 delphi:
   name: Delphi
   variants:
     - ada
     - pascal
-dot:
-  name: DOT
-dylan:
-  name: Dylan
-ec:
-  name: eC
 ecl:
   name: Ecl
+  variants:
+    - c
+    - pascal
 eiffel:
   name: Eiffel
+  variants:
+    - ada
+    - d
 elixir:
   name: Elixir
-emacs-lisp:
-  name: Emacs Lisp
+  variants:
+    - erlang
+    - common-lisp
 erlang:
   name: Erlang
+  variants:
+    - smalltalk
+    - prolog
 fsharp:
   name: F#
-factor:
-  name: Factor
+  variants:
+    - csharp
+    - d
 fancy:
   name: Fancy
+  variants:
+    - smalltalk
+    - ruby
 fantom:
   name: Fantom
+  variants:
+    - java
+    - csharp
 forth:
   name: Forth
+  variants:
+    - erlang
 fortran:
   name: FORTRAN
+  variants:
+    - c
+    - pascal
 go:
   name: Go
+  variants:
+    - c
+    - smalltalk
 gosu:
   name: Gosu
+  variants:
+    - java
+    - go
 groovy:
   name: Groovy
+  variants:
+    - java
+    - smalltalk
 haskell:
   name: Haskell
-haxe:
-  name: Haxe
-io:
-  name: Io
-ioke:
-  name: Ioke
+  variants:
+    - common-lisp
+    - erlang
 java:
   name: Java
   variants:
@@ -127,54 +163,48 @@ java:
     - javascript
 javascript:
   name: JavaScript
-julia:
-  name: Julia
-kotlin:
-  name: Kotlin
-lasso:
-  name: Lasso
-livescript:
-  name: LiveScript
-logos:
-  name: Logos
+  variants:
+    - java
+    - coffeescript
 logtalk:
   name: Logtalk
+  variants:
+    - prolog
+    - smalltalk
+lolcode:
+  name: LOLCODE
+  variants:
+    - brainfuck
+    - befunge
 lua:
   name: Lua
-m:
-  name: M
+  variants:
+    - cpp
+    - javascript
 matlab:
   name: Matlab
-max%2Fmsp:
-  name: Max
-ruby:
-  name: Mirah
-monkey:
-  name: Monkey
-moonscript:
-  name: MoonScript
+  variants:
+    - elixir
 nemerle:
   name: Nemerle
-nimrod:
-  name: Nimrod
-nu:
-  name: Nu
+  variants:
+    - csharp
+    - common-lisp
 objective-c:
   name: Objective-C
-objective-j:
-  name: Objective-J
+  variants:
+    - smalltalk
+    - c
 ocaml:
   name: OCaml
+  variants:
+    - fsharp
+    - scala
 omgrofl:
   name: Omgrofl
-ooc:
-  name: ooc
-opa:
-  name: Opa
-openedge-abl:
-  name: OpenEdge ABL
-parrot:
-  name: Parrot
+  variants:
+    - lolcode
+    - brainfuck
 pascal:
   name: Pascal
   variants:
@@ -182,83 +212,93 @@ pascal:
     - delphi
 perl:
   name: Perl
+  variants:
+    - php
+    - python
 php:
   name: PHP
-pike:
-  name: Pike
-pogoscript:
-  name: PogoScript
-powershell:
-  name: PowerShell
+  variants:
+    - perl
+    - python
 processing:
   name: Processing
+  variants:
+    - c
+    - javascript
 prolog:
   name: Prolog
-puppet:
-  name: Puppet
-pure-data:
-  name: Pure Data
+  variants:
+    - scala
+    - erlang
 python:
   name: Python
+  variants:
+    - ruby
+    - php
 r:
   name: R
+  variants:
+    - scheme
 racket:
   name: Racket
+  variants:
+    - scala
+    - scheme
 rebol:
   name: Rebol
-rouge:
-  name: Rouge
+  variants:
+    - processing
+    - delphi
 ruby:
   name: Ruby
+  variants:
+    - python
+    - smalltalk
 rust:
   name: Rust
+  variants:
+    - cpp
+    - haskell
 scala:
   name: Scala
+  variants:
+    - ocaml
+    - prolog
 scheme:
   name: Scheme
-scilab:
-  name: Scilab
-self:
-  name: Self
-bash:
-  name: Shell
-slash:
-  name: Slash
+  variants:
+    - common-lisp
+    - scala
+shakespeare:
+  name: Shakespeare
+  variants:
+    - chef
+    - brainfuck
 smalltalk:
   name: Smalltalk
-standard-ml:
-  name: Standard ML
+  variants:
+    - prolog
+    - go
 supercollider:
   name: SuperCollider
+  variants:
+    - processing
+    - matlab
 tcl:
   name: Tcl
-turing:
-  name: Turing
-txl:
-  name: TXL
-typescript:
-  name: TypeScript
+  variants:
+    - common-lisp
+    - erlang
 vala:
   name: Vala
-verilog:
-  name: Verilog
-vhdl:
-  name: VHDL
-vim:
-  name: VimL
+  variants:
+    - cpp
+    - java
 visual-basic:
   name: Visual Basic
-wisp:
-  name: wisp
-xc:
-  name: XC
-xml:
-  name: XML
-xproc:
-  name: XProc
-xquery:
-  name: XQuery
-xslt:
-  name: XSLT
+  variants:
+    - delphi
 xtend:
-  name: Xtend"
+  name: Xtend
+  variants:
+    - java

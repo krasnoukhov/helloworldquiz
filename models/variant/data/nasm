@@ -2,16 +2,16 @@
 string:
         .ascii "Hello, world!\n"
 length:
-        .quad . -string         #Dot = 'here'
+        .quad . -string
 
         .section        .text
-        .globl _start           #Make entry point visible to linker
+        .globl _start
 _start:
-        movq $4, %rax           #4=write
-        movq $1, %rbx           #1=stdout
+        movq $4, %rax
+        movq $1, %rbx
         movq $string, %rcx
         movq length, %rdx
-        int $0x80               #Call Operating System
-        movq %rax, %rbx         #Make program return syscall exit status
-        movq $1, %rax           #1=exit
-        int $0x80               #Call System Again
+        int $0x80
+        movq %rax, %rbx
+        movq $1, %rax
+        int $0x80

@@ -11,10 +11,10 @@ begin
 end;
 
 var
-  HelloWorld: THelloWorld;               { this is an implicit pointer }
+  HelloWorld: THelloWorld;
 
 begin
-  HelloWorld := THelloWorld.Create;      { constructor returns a pointer to an object of type THelloWorld }
+  HelloWorld := THelloWorld.Create;
   HelloWorld.Put;
-  HelloWorld.Free;                       { this line deallocates the THelloWorld object pointed to by HelloWorld }
+  HelloWorld.Free;
 end.

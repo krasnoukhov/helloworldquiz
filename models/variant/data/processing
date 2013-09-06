@@ -1,0 +1,12 @@
+void setup() {
+  size(200, 200);
+  smooth();
+  fill(0);
+  textFont(createFont("SansSerif",18));
+  textAlign(CENTER);
+  noLoop();
+}
+
+void draw() {
+  text("Hello World!", width/2, height/2);
+}
