@@ -1,16 +1,9 @@
 export GO_ENV=prod
 export RELEASE=/tmp/game
 
+ln -s `pwd` ${HOME}/.go/src/langgame
 ./deps
 train
-bee pack
-mkdir -p $RELEASE
-mv langgame.tar.gz $RELEASE
-
-cd $RELEASE
-tar -xzf langgame.tar.gz
-killall langgame
-nohup ./langgame &
-
-unset GO_ENV
-unset RELEASE
+killall bee
+nohup bee run langgame &
+sleep 1

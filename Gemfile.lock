@@ -1,13 +1,30 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    capistrano_colors (0.5.5)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
     execjs (2.0.1)
+    highline (1.6.19)
     libv8 (3.16.14.3)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.8)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     ref (1.0.5)
+    rvm-capistrano (1.5.0)
+      capistrano (>= 2.15.4)
     sass (3.2.10)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
@@ -17,6 +34,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  capistrano
+  capistrano_colors
   coffee-script
+  rvm-capistrano
   sass
   therubyracer
