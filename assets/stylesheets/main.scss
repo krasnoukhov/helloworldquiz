@@ -91,16 +91,51 @@ pre {
 h1 {
   text-align: center;
   position: relative;
+  font-size: 2.3em;
+  
+  a {
+    color: #000;
+    text-decoration: none;
+  }
   
   .pure-button {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 50%;
+    font-size: 44%;
     font-weight: 100;
     color: #444;
     padding-bottom: 0.5em;
     position: absolute;
-    top: 0;
+    top: 4px;
     right: 0;
+  }
+}
+
+h2 {
+  text-align: center;
+  margin: 2.3em 0 .7em;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1.8em;
+}
+
+table {
+  margin: 0 auto;
+  
+  td {
+    padding: 5px 10px;
+    font-size: 1.5em;
+    font-family: Helvetica, Arial, sans-serif;
+    
+    
+    &:first-child {
+      text-align: right;
+      font-weight: 600;
+    }
+  
+    &:last-child {
+      text-align: left;
+      font-weight: 100;
+    }
   }
 }
 
@@ -117,12 +152,13 @@ h1 {
   }
   
   h1 {
-    font-size: 2em;
-    margin-top: 0;
+    font-size: 2.4em;
+    margin: 0;
   }
   
   p {
     font-size: 1.3em;
+    margin: .7em 0 1.3em;
   }
 }
 
