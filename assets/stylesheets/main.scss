@@ -31,13 +31,23 @@ html, body {
   margin: 0 auto;
 }
 
+ul {
+  margin: 0;
+}
+
 footer {
-  margin-top: 40px !important;
+  margin-top: 70px !important;
   padding: 20px 0;
+  border-top: 1px solid #D6D6D6;
   
   p {
     font-size: 1em;
     margin: 0;
+    line-height: 1.4em;
+    
+    a {
+      color: #089be4;
+    }
   }
 }
 
@@ -46,7 +56,7 @@ code * {
 }
 
 pre {
-  margin-top: 0;
+  margin: 0;
 }
 
 .pure-button {
@@ -82,13 +92,15 @@ h1 {
   text-align: center;
   position: relative;
   
-  a {
+  .pure-button {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: .6em;
+    font-size: 50%;
     font-weight: 100;
+    color: #444;
+    padding-bottom: 0.5em;
     position: absolute;
+    top: 0;
     right: 0;
-    top: 8px;
   }
 }
 
