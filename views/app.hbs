@@ -3,46 +3,72 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="index">
-  <div class="hero-unit">
+  <div class="hero-unit" {{bind-attr class="isLoading"}}>
     <div class="inner">
       <h1>{{title}}</h1>
       <p>Recognize programming language by "Hello World" code snippet</p>
-      {{#if isLoading}}
-        <a class="pure-button pure-button-secondary pure-button-large" disabled>Play</a>
-      {{else}}
-        <a class="pure-button pure-button-secondary pure-button-large" {{action "play"}}>Play</a>
-      {{/if}}
+      <a class="action-button pure-button pure-button-secondary pure-button-large" {{action "play"}}>Play</a>
     </div>
   </div>
 </script>
 
 <script type="text/x-handlebars" data-template-name="game">
-  <div class="container">
+  <div class="container" {{bind-attr class="isLoading"}}>
     {{partial "header"}}
     
     {{#with response}}
-      <div class="status">
-        {{#with game}}
-        <span>Lives: {{lives}}</span>
-        <span>Score: {{score}}</span>
-        {{/with}}
-      </div>
-      
       {{#if variant}}
-        {{#with variant}}
-        <pre>
-          <code>{{{snippet}}}</code>
-        </pre>
-        
-        <div class="answers">
-          <ul class="answer-types">
-            {{#each options}}
-              <li><a class="pure-button pure-button-secondary" href="#">{{name}}</a></li>
-            {{/each}}
-          </ul>
-          <ul class="result"></ul>
+        <div class="status">
+          {{#with game}}
+          <span>Lives: {{lives}}</span>
+          <span>Score: {{score}}</span>
+          {{/with}}
         </div>
+        
+        {{#with variant}}
+          <pre>
+            <code>{{{snippet}}}</code>
+          </pre>
+          
+          <div class="answers">
+          {{#if name}}
+            <ul class="result">
+              <li>
+                <h2>Wrong! The answer was {{name}}</h2>
+                <a class="pure-button pure-button-error" {{action "next"}}>
+                  {{#if live}}
+                  Next
+                  {{else}}
+                  Gameover
+                  {{/if}}
+                </a>
+              </li>
+            </ul>
+          {{else}}
+            <ul class="answer-types">
+              {{#each options}}
+                <li>
+                  <a class="action-button pure-button pure-button-secondary" {{action "choose" key}}>{{name}}</a>
+                </li>
+              {{/each}}
+            </ul>
+          {{/if}}
+          </div>
         {{/with}}
+      {{else}}
+        <div class="gameover">
+          <h3>Your score is {{#with game}}{{score}}{{/with}}!</h3>
+          <a href="/#/" class="pure-button pure-button-secondary">Play again</a>
+          <del class="clearfix"></del>
+          
+          {{#if ../../hasSurvived}}
+          <a href="http://theoldreader.com/kittens/" target="_blank">
+            <img src="http://theoldreader.com/kittens/500/350/" alt="Kittens!" />
+          </a>
+          <del class="clearfix"></del>
+          <i>(refresh to see more winner kittens)</i>
+          {{/if}}
+        </div>
       {{/if}}
     {{/with}}
   </div>
@@ -71,11 +97,15 @@
       </tr>
       <tr>
         <td>Easiest language</td>
-        <td>{{#with easiest}}{{name}}({{value}}%){{/with}}</td>
+        {{#with easiest}}
+          <td>{{name}} ({{value}}%)</td>
+        {{/with}}
       </tr>
       <tr>
         <td>Hardest language</td>
-        <td>{{#with hardest}}{{name}}({{value}}%){{/with}}</td>
+        {{#with hardest}}
+          <td>{{name}} ({{value}}%)</td>
+        {{/with}}
       </tr>
       <tr>
         <td>Highest score</td>
@@ -85,21 +115,6 @@
     {{/with}}
   </div>
 
-  {{partial "footer"}}
-</script>
-
-<script type="text/x-handlebars" data-template-name="gameover">
-  <div class="container">
-    {{partial "header"}}
-    
-    <div class="gameover">
-      <h3>Your score is 1488!</h3>
-      <a href="#" class="pure-button pure-button-secondary">Play again</a>
-      <img src="http://qvvh.com/files/2013/07/kittens.jpg" alt="" />
-    </div>
-    
-    
-  </div>
   {{partial "footer"}}
 </script>
 

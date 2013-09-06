@@ -41,6 +41,12 @@ App.IndexController = Ember.ObjectController.extend($.extend(
 App.GameController = Ember.ObjectController.extend($.extend(
   isLoading: false
   response: null
+  waitResponse: null
+  hasSurvived: (->
+    return false unless this.get("response")
+    this.get("response").status == "survived"
+  ).property("response")
+    
   
   load: ->
     self = this
@@ -50,28 +56,44 @@ App.GameController = Ember.ObjectController.extend($.extend(
     $.get("/game").always(->
       self.set("isLoading", false)
     ).done((data) ->
-      if data.Error
+      if data.error
         self.transitionToRoute("index")
       else
         self.set("response", data)
     )
   
-  actions:
-    lol: ->
-      # ...
+  result: (data) ->
+    if data.correct
+      response = $.extend({}, data)
+      response.variant = data.correct
+      response.variant.live = data.game.lives > 0
+      this.set("response", response)
       
+      this.set("waitResponse", data)
+    else
+      this.set("response", data)
+    
+  actions:
+    choose: (option) ->
+      self = this
+      
+      self.set("isLoading", true)
+      $.ajax(url: "/game", type: "PUT", data: {
+        option: option
+      }).always(->
+        self.set("isLoading", false)
+      ).done((data) ->
+        if data.error
+          alert(data.error)
+        else
+          self.result(data)
+      )
+    
+    next: ->
+      this.set("response", this.get("waitResponse"))
+      this.set("waitResponse", null)
+      this.set("correct", null)
+    
 , Config))
 
 App.StatsController = Ember.ObjectController.extend(Config)
-
-$ ->
-  $(".answer-types a").click ->
-    $(".answer-types").remove()
-    
-    if $(this).hasClass("correct")
-      $(".result").append('<li><h2>Correct!</h2> <a href="#" class="pure-button pure-button-success">Next</a></li>')
-    else
-      $(".result").append('<li><h2>Wrong!</h2> <a href="#" class="pure-button pure-button-error">Next</a></li>')
-    
-    $(".result").fadeIn()
-    false

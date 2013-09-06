@@ -28,7 +28,7 @@ func (this *GameController) Post() {
     this.SetSession("GameObjectId", object.ObjectId)
     this.Data["json"] = &GameResponse{ object, game.GetVariant(object), nil, "ready" }
   } else {
-    this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
+    this.Data["json"] = map[string]string{ "error": fmt.Sprint(err) }
   }
   
   this.ServeJson()
@@ -38,9 +38,16 @@ func (this *GameController) Get() {
   object, err := Game(this)
   
   if err == nil {
-    this.Data["json"] = &GameResponse{ object, game.GetVariant(object), nil, "ready" }
+    status := "ready"
+    if object.Lives <= 0 {
+      status = "died"
+    }else if len(object.Completed) == len(variant.Objects) {
+      status = "survived"
+    }
+    
+    this.Data["json"] = &GameResponse{ object, game.GetVariant(object), nil, status }
   } else {
-    this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
+    this.Data["json"] = map[string]string{ "error": fmt.Sprint(err) }
   }
   
   this.ServeJson()
@@ -53,7 +60,7 @@ func (this *GameController) Put() {
     conn := redisPool.Get()
     defer conn.Close()
     
-    option := this.GetString("Option")
+    option := this.GetString("option")
     correct := &variant.DumpObject{}
     
     if object.Current != "" {
@@ -92,7 +99,7 @@ func (this *GameController) Put() {
       }
     }
   } else {
-    this.Data["json"] = map[string]string{ "Error": fmt.Sprint(err) }
+    this.Data["json"] = map[string]string{ "error": fmt.Sprint(err) }
   }
   
   this.ServeJson()

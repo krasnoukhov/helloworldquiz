@@ -58,7 +58,7 @@ func Get(objectId string) (response *Object, err error) {
 }
 
 func GetVariant(object *Object) (response *variant.Object) {
-  if object.Current == "" {
+  if object.Current == "" && object.Lives > 0 {
     available := Diff(object.Completed, variant.Keys)
     object.Current = ""
     
