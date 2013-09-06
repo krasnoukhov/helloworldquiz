@@ -1,7 +1,10 @@
 App = Ember.Application.create()
 
 App.Router.map ->
-  # put your routes here
+  this.route("game")
+  this.route("stats")
+
+App.ApplicationController = Ember.Controller.extend(Config)
 
 App.IndexRoute = Ember.Route.extend(
   model: ->

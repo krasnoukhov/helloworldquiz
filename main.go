@@ -4,6 +4,7 @@ import (
   "os"
   "net/http"
   "strings"
+  "io/ioutil"
   "langgame/controllers"
   "github.com/astaxie/beego"
   "github.com/krasnoukhov/train"
@@ -21,6 +22,10 @@ func main() {
   beego.SetStaticPath("/public", "public")
   beego.AddFuncMap("javascript_tag", train.JavascriptTag)
   beego.AddFuncMap("stylesheet_tag", train.StylesheetTag)
+  beego.AddFuncMap("app", func () (out string) {
+    source, _ := ioutil.ReadFile("views/app.hbs")
+    return string(source[:])
+  })
   
   // Routes
   beego.Router("/", &controllers.MainController{})
