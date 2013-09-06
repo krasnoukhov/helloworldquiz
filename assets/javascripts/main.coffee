@@ -1,14 +1,20 @@
 App = Ember.Application.create()
-
 App.Router.map ->
   this.route("game")
   this.route("stats")
 
-App.ApplicationController = Ember.Controller.extend(Config)
+App.IndexController = Ember.ObjectController.extend(Config)
+App.GameController = Ember.ObjectController.extend(Config)
+App.StatsController = Ember.ObjectController.extend(Config)
 
-App.IndexRoute = Ember.Route.extend(
-  model: ->
-    ["red", "yellow", "blue", "black"]
+App.IndexRoute = Ember.Route.extend()
+App.GameRoute = Ember.Route.extend(
+  renderTemplate: ->
+    this.render("game")
+)
+App.StatsRoute = Ember.Route.extend(
+  renderTemplate: ->
+    this.render("stats")
 )
 
 $ ->
