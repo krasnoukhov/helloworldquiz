@@ -14,6 +14,7 @@ type StatsController struct {
 }
 
 type StatsObject struct {
+  Variants        string
   Games           string
   CompletionRate  string
   Easiest         *StatsVariant
@@ -34,6 +35,8 @@ func (this *StatsController) Get() {
   defer conn.Close()
   
   var stats StatsObject
+  stats.Variants = fmt.Sprintf("%v", len(variant.Objects))
+  
   games, _ := redis.Int(conn.Do("HLEN", "games"))
   stats.Games = fmt.Sprintf("%v", games)
   
@@ -67,9 +70,11 @@ func FindMaxVariant(conn redis.Conn, source string, opposite string) (response *
     }
   }
   
-  response.OppositeScore, _ = redis.Int(conn.Do("HGET", opposite, response.Key))
-  response.Name = variant.Objects[response.Key].Name
-  response.Value = fmt.Sprintf("%.1f", (float64(response.Score) / float64(response.Score + response.OppositeScore)) * 100)
+  if response.Key != "" {
+    response.OppositeScore, _ = redis.Int(conn.Do("HGET", opposite, response.Key))
+    response.Name = variant.Objects[response.Key].Name
+    response.Value = fmt.Sprintf("%.1f", (float64(response.Score) / float64(response.Score + response.OppositeScore)) * 100)
+  }
   
   return response
 }
