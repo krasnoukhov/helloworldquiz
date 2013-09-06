@@ -31,9 +31,7 @@
       {{#if variant}}
         {{#with variant}}
         <pre>
-          <code>
-            {{{snippet}}}
-          </code>
+          <code>{{{snippet}}}</code>
         </pre>
         
         <div class="answers">
@@ -56,10 +54,19 @@
   <div class="container">
     {{partial "header"}}
     
+    {{#with model}}
     <h2>Stats</h2>
     <table>
       <tr>
         <td>Games</td>
+        <td>{{games}}</td>
+      </tr>
+      <tr>
+        <td>Languages count</td>
+        <td>63</td>
+      </tr>
+      <tr>
+        <td>Competion rate</td>
         <td>100500</td>
       </tr>
       <tr>
@@ -75,6 +82,7 @@
         <td>100500</td>
       </tr>
     </table>
+    {{/with}}
   </div>
 
   {{partial "footer"}}

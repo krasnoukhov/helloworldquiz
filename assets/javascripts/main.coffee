@@ -1,4 +1,4 @@
-App = Ember.Application.create()
+@App = Ember.Application.create()
 App.Router.map ->
   this.route("game")
   this.route("stats")
@@ -12,6 +12,9 @@ App.GameRoute = Ember.Route.extend(
     this.render("game")
 )
 App.StatsRoute = Ember.Route.extend(
+  model: ->
+    Ember.$.getJSON "/stats"
+  
   renderTemplate: ->
     this.render("stats")
 )
