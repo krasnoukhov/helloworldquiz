@@ -31,7 +31,7 @@ func Add() (object *Object, err error) {
   object = &Object{}
   object.ObjectId = uniuri.New()
   object.Score = 0
-  object.Lives = 3
+  object.Lives = 5
   object.Completed = []string{}
   
   err = Set(object)
@@ -83,7 +83,7 @@ func SetVariant(object *Object, option string) {
     defer conn.Close()
     
     if object.Current == option {
-      object.Score += 50
+      object.Score += 100
       conn.Do("HINCRBY", "success", object.Current, 1)
     } else {
       object.Lives -= 1
