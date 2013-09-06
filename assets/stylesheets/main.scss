@@ -193,3 +193,17 @@ table {
     vertical-align: middle;
   }
 }
+
+.gameover {
+  margin-top: 50px;
+  text-align: center;
+  
+  h3 {
+    font-size: 1.8em;
+  }
+  
+  img {
+    margin-top: 40px;
+    max-width: 100%;
+  }
+}

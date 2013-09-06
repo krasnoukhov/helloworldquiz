@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>{{ .title }}</title>
+    <title>{{ .title }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta property="og:title" content="{{ .caption }}"/>
+    <meta property="og:url" content="http://{{ .host }}"/>
+    <meta property="og:image" content="http://{{ .host }}/icon.png"/>
     
     <script type="text/javascript">
       var Config = {
