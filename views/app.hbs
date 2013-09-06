@@ -63,23 +63,23 @@
       </tr>
       <tr>
         <td>Languages count</td>
-        <td>63</td>
+        <td>{{variants}}</td>
       </tr>
       <tr>
         <td>Competion rate</td>
-        <td>100500</td>
+        <td>{{completion_rate}}%</td>
       </tr>
       <tr>
         <td>Easiest language</td>
-        <td>C++</td>
+        <td>{{#with easiest}}{{name}}({{value}}%){{/with}}</td>
       </tr>
       <tr>
         <td>Hardest language</td>
-        <td>OMGROFL</td>
+        <td>{{#with hardest}}{{name}}({{value}}%){{/with}}</td>
       </tr>
       <tr>
         <td>Highest score</td>
-        <td>100500</td>
+        <td>{{highest}}</td>
       </tr>
     </table>
     {{/with}}
