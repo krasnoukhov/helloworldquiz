@@ -1,24 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>Programming Languages Quiz</title>
+  <title>{{ .title }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link href='http://yui.yahooapis.com/pure/0.2.1/buttons-min.css' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Gafata' rel='stylesheet' type='text/css'>
     {{ "app" | stylesheet_tag }}
     {{ "main" | stylesheet_tag }}
     {{ "app" | javascript_tag }}
     {{ "main" | javascript_tag }}
+    <link href="http://fonts.googleapis.com/css?family=Gafata" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1374335546120479";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
     <!-- <div class="hero-unit">
       <div class="inner">
         <h1>Programming Languages Quiz</h1>
@@ -74,11 +65,13 @@
     </div>
     
     <footer class="container clearfix">
-      <p class="pull-left">&copy; <a href="https://github.com/krasnoukhov">Dmitry Krasnoukhov</a> & <a href="https://github.com/kr3ved">Slava Zagorodniy</a></p>
-      <div class="fb-like pull-right" data-href="http://developers.facebook.com/docs/reference/plugins/like" data-width="450" data-layout="button_count" data-show-faces="true" data-send="false"></div>
-      <a href="https://twitter.com/share" class="twitter-share-button pull-right" data-text="Recognize Programming Language game">Tweet</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      <p class="pull-left">
+        &copy; <a href="http://krasnoukhov.com/">Dmitry Krasnoukhov</a> & <a href="https://github.com/kr3ved">Slava Zagorodniy</a>
+      </p>
       
+      <iframe class="pull-right" src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F{{ .host }}&amp;width=107&amp;height=20&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=false" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:107px; height:20px;"></iframe>
+      <iframe class="pull-right" src="http://platform.twitter.com/widgets/tweet_button.1378258117.html#_=1378492153846&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;size=m&amp;text={{ .title }}&amp;url=http%3A%2F%2F{{ .host }}%2F" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:107px; height:20px;"></iframe>
+      <iframe class="pull-right" src="http://ghbtns.com/github-btn.html?user=krasnoukhov&repo=langgame&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:107px; height:20px;"></iframe>
     </footer>
   </body>
 </html>
