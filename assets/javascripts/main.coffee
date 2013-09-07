@@ -26,6 +26,17 @@ App.StatsRoute = Ember.Route.extend(
     this.render("stats")
 )
 
+App.ApplicationController = Ember.Controller.extend(
+  routeChanged: (->
+    return unless ga
+    
+    self = this
+    Em.run.next ->
+      ga("send", "pageview", "/#{self.get("currentPath")}")
+    
+  ).observes("currentPath")
+)
+
 App.IndexController = Ember.ObjectController.extend($.extend(
   isLoading: false
   
@@ -76,6 +87,8 @@ App.GameController = Ember.ObjectController.extend($.extend(
     )
   
   result: (data) ->
+    ga("send", "pageview", "/game")
+    
     if data.correct
       response = $.extend({}, data)
       response.variant = data.correct
@@ -105,7 +118,6 @@ App.GameController = Ember.ObjectController.extend($.extend(
     next: ->
       this.set("response", this.get("waitResponse"))
       this.set("waitResponse", null)
-      this.set("correct", null)
     
 , Config))
 
