@@ -130,8 +130,8 @@
       Highly inspired by <a href="http://greatlanguagegame.com/" target="_blank">Great Language Game</a>
     </p>
     
-    <iframe class="pull-right" src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F{{host}}&amp;width=107&amp;height=20&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=false" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:107px; height:20px;"></iframe>
-    <iframe class="pull-right" src="http://platform.twitter.com/widgets/tweet_button.1378258117.html#_=1378492153846&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;size=m&amp;text={{title}}&amp;url=http%3A%2F%2F{{host}}%2F" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:107px; height:20px;"></iframe>
-    <iframe class="pull-right" src="http://ghbtns.com/github-btn.html?user=krasnoukhov&repo=langgame&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:107px; height:20px;"></iframe>
+    {{#each iframes}}
+      <iframe class="pull-right" {{bind-attr src="this"}} allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:107px; height:20px;"></iframe>
+    {{/each}}
   </footer>
 </script>

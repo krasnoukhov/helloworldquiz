@@ -1,4 +1,11 @@
 @App = Ember.Application.create()
+
+Config.iframes = [
+  "//www.facebook.com/plugins/like.php?href=http%3A%2F%2F#{escape(Config.host)}&amp;width=107&amp;height=20&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=false",
+  "http://platform.twitter.com/widgets/tweet_button.1378258117.html#_=1378492153846&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;size=m&amp;text=#{escape(Config.caption)}&amp;url=http%3A%2F%2F#{escape(Config.host)}%2F",
+  "http://ghbtns.com/github-btn.html?user=krasnoukhov&repo=langgame&type=watch&count=true"
+]
+
 App.Router.map ->
   this.route("game")
   this.route("stats")
