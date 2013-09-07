@@ -1,9 +1,0 @@
-export GO_ENV=prod
-export RELEASE=/tmp/game
-
-ln -s `pwd` ${HOME}/.go/src/langgame
-./deps
-train
-killall bee
-nohup bee run langgame > log/out.log 2>log/err.log &
-sleep 1

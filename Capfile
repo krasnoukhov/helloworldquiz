@@ -29,6 +29,12 @@ set   :keep_releases, 5
 after "deploy:update", "deploy:cleanup"
 namespace :deploy do
   task :restart, roles: :web do
-    run "cd #{current_path} && ./build"
+    # run "cd #{current_path} && ln -s `pwd` ${HOME}/.go/src/langgame && true"
+    version = capture("cd #{current_path}/../releases/ && ls -t | head -n 1").strip
+    run "cd #{current_path} && ./deps && train"
+    run "cd #{current_path} && bee pack #{project}; true"
+    run "cd #{current_path} && tar -xzf #{version}.tar.gz"
+    run "cd #{current_path} && mv #{version} #{project} && killall #{project}; true"
+    run "cd #{current_path} && bash -c 'GO_ENV=prod nohup ./#{project} > log/out.log 2>log/err.log &' && sleep 1"
   end
 end
