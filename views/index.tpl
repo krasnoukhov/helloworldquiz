@@ -23,10 +23,15 @@
             js.src = "//platform.twitter.com/widgets.js";
             fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'twitter-wjs'));
+          
+          $("#fb-root").remove();
           (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             js = d.createElement(s); // js.id = id;
             js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=163504373852504";
+            js.onload = function() {
+              FB.XFBML.parse();
+            } 
             fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
         }
