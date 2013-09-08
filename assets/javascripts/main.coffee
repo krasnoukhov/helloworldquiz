@@ -55,7 +55,15 @@ App.IndexController = Ember.ObjectController.extend($.extend(
 App.GameController = Ember.ObjectController.extend($.extend(
   isLoading: false
   response: null
+  correct: null
   waitResponse: null
+  
+  isLive: (->
+    return true unless this.get("response")
+    return false if this.get("waitResponse") && this.get("waitResponse").game.lives == 0
+    return false if this.get("response") && this.get("response").game.lives == 0
+    return true
+  ).property("response", "waitResponse")
   
   hasSurvived: (->
     return false unless this.get("response")
@@ -86,11 +94,7 @@ App.GameController = Ember.ObjectController.extend($.extend(
     ga("send", "pageview", "/game")
     
     if data.correct
-      response = $.extend({}, data)
-      response.variant = data.correct
-      response.variant.live = data.game.lives > 0
-      this.set("response", response)
-      
+      this.set("correct", data.correct)
       this.set("waitResponse", data)
     else
       this.set("response", data)
@@ -113,6 +117,7 @@ App.GameController = Ember.ObjectController.extend($.extend(
     
     next: ->
       this.set("response", this.get("waitResponse"))
+      this.set("correct", null)
       this.set("waitResponse", null)
     
 , Config))

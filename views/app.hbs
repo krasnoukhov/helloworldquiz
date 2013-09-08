@@ -3,74 +3,70 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="index">
-  <div class="hero-unit" {{bind-attr class="isLoading"}}>
+  <div class="hero-unit">
     <div class="inner">
       <h1>{{title}}</h1>
       <p>{{description}}</p>
-      <a class="action-button pure-button pure-button-secondary pure-button-large" {{action "play"}}>Play</a>
+      <button class="pure-button pure-button-secondary pure-button-large" {{action "play"}} {{bind-attr disabled="isLoading"}}>Play</button>
     </div>
   </div>
 </script>
 
 <script type="text/x-handlebars" data-template-name="game">
-  <div class="container" {{bind-attr class="isLoading"}}>
+  <div class="container">
     {{partial "header"}}
     
-    {{#with response}}
-      {{#if variant}}
-        <div class="status">
-          {{#with game}}
-          <span>Lives: {{lives}}</span>
-          <span>Score: {{score}}</span>
-          {{/with}}
-        </div>
-        
-        {{#with variant}}
-          <pre>
-            <code>{{{../../../highlightedSnippet}}}</code>
-          </pre>
-          
-          <div class="answers">
-          {{#if name}}
-            <ul class="result">
-              <li>
-                <h2>Wrong! The answer was {{name}}</h2>
-                <a class="pure-button pure-button-error" {{action "next"}}>
-                  {{#if live}}
-                  Next
-                  {{else}}
-                  Gameover
-                  {{/if}}
-                </a>
-              </li>
-            </ul>
-          {{else}}
-            <ul class="answer-types">
-              {{#each options}}
-                <li>
-                  <a class="action-button pure-button pure-button-secondary" {{action "choose" key}}>{{name}}</a>
-                </li>
-              {{/each}}
-            </ul>
-          {{/if}}
-          </div>
-        {{/with}}
+    {{#if response.variant}}
+      <div class="status">
+        <span>Lives: {{response.game.lives}}</span>
+        <span>Score: {{response.game.score}}</span>
+      </div>
+      
+      <pre>
+        <code>{{{highlightedSnippet}}}</code>
+      </pre>
+      
+      <div class="answers">
+      {{#if correct}}
+        <ul class="result">
+          <li>
+            <h2>Wrong! The answer was {{correct.name}}</h2>
+            <a class="pure-button pure-button-error" {{action "next"}}>
+              {{#if isLive}}
+              Next
+              {{else}}
+              Gameover
+              {{/if}}
+            </a>
+          </li>
+        </ul>
       {{else}}
-        <div class="gameover">
-          <h3>Your score is {{#with game}}{{score}}{{/with}}!</h3>
-          <a href="/#/" class="pure-button pure-button-secondary">Play again</a>
-          <del class="clearfix"></del>
-          
-          {{#if ../../hasSurvived}}
-          <a href="http://theoldreader.com/kittens/" target="_blank">
-            <img src="http://theoldreader.com/kittens/500/350/" alt="Kittens!" />
-          </a>
-          <del class="clearfix"></del>
-          <i>(refresh to see more winner kittens)</i>
-          {{/if}}
-        </div>
+        <ul class="answer-types">
+          {{#each option in response.variant.options}}
+            <li>
+              <button class="pure-button pure-button-secondary" {{action "choose" option.key}} {{bind-attr disabled="isLoading"}}>
+                {{option.name}}
+              </button>
+            </li>
+          {{/each}}
+        </ul>
       {{/if}}
-    {{/with}}
+      </div>
+    {{else}}
+      <div class="gameover">
+        <h3>Your score is {{response.game.score}}!</h3>
+        <a href="/#/" class="pure-button pure-button-secondary">Play again</a>
+        <del class="clearfix"></del>
+        
+        {{#if hasSurvived}}
+        <a href="http://theoldreader.com/kittens/" target="_blank">
+          <img src="http://theoldreader.com/kittens/500/350/" alt="Kittens!" />
+        </a>
+        <del class="clearfix"></del>
+        <i>(refresh to see more winner kittens)</i>
+        {{/if}}
+      </div>
+    {{/if}}
   </div>
   
   {{partial "footer"}}
