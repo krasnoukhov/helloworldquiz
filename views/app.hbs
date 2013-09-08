@@ -30,12 +30,12 @@
       {{#if correct}}
         <ul class="result">
           <li>
-            <h2>Wrong! The answer was {{correct.name}}</h2>
+            <h2>Nope! The right answer was {{correct.name}}</h2>
             <a class="pure-button pure-button-error" {{action "next"}}>
               {{#if isLive}}
               Next
               {{else}}
-              Gameover
+              Game over
               {{/if}}
             </a>
           </li>
@@ -63,7 +63,7 @@
           <img src="http://theoldreader.com/kittens/500/350/" alt="Kittens!" />
         </a>
         <del class="clearfix"></del>
-        <i>(refresh to see more winner kittens)</i>
+        <i>(Refresh to see more dope kittens)</i>
         {{/if}}
       </div>
     {{/if}}
@@ -94,13 +94,13 @@
       <tr>
         <td>Easiest language</td>
         {{#with easiest}}
-          <td>{{name}} ({{value}}%)</td>
+          <td>{{name}} ({{value}}% of right guesses)</td>
         {{/with}}
       </tr>
       <tr>
         <td>Hardest language</td>
         {{#with hardest}}
-          <td>{{name}} ({{value}}%)</td>
+          <td>{{name}} ({{value}}% of wrong guesses)</td>
         {{/with}}
       </tr>
       <tr>
