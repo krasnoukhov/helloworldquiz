@@ -58,6 +58,12 @@ App.GameController = Ember.ObjectController.extend($.extend(
   correct: null
   waitResponse: null
   
+  game: (->
+    return this.get("waitResponse").game if this.get("waitResponse")
+    return this.get("response").game if this.get("response")
+    {}
+  ).property("response", "waitResponse")
+  
   isLive: (->
     return true unless this.get("response")
     return false if this.get("waitResponse") && this.get("waitResponse").game.lives == 0

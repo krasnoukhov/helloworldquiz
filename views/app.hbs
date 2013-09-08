@@ -18,8 +18,8 @@
     
     {{#if response.variant}}
       <div class="status">
-        <span>Lives: {{response.game.lives}}</span>
-        <span>Score: {{response.game.score}}</span>
+        <span>Lives: {{game.lives}}</span>
+        <span>Score: {{game.score}}</span>
       </div>
       
       <pre>
@@ -54,7 +54,7 @@
       </div>
     {{else}}
       <div class="gameover">
-        <h3>Your score is {{response.game.score}}!</h3>
+        <h3>Your score is {{game.score}}!</h3>
         <a href="/#/" class="pure-button pure-button-secondary">Play again</a>
         <del class="clearfix"></del>
         
