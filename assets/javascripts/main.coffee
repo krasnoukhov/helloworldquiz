@@ -79,7 +79,7 @@ App.GameController = Ember.ObjectController.extend($.extend(
   highlightedSnippet: (->
     return "" unless this.get("response")
     snippet = this.get("response").variant.snippet
-    hljs.highlightAuto(snippet).value
+    $("<div />").html(hljs.highlightAuto(snippet).value).html()
   ).property("response")
   
   load: ->
