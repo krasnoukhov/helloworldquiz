@@ -18,6 +18,18 @@
   float: right;
 }
 
+ul {
+  margin: 0;
+}
+
+code * {
+  font-family: monospace, serif;
+}
+
+pre {
+  margin: 0;
+}
+
 html, body {
   height: 100%;
 }
@@ -29,10 +41,6 @@ html, body {
 .container {
   width: 800px;
   margin: 0 auto;
-}
-
-ul {
-  margin: 0;
 }
 
 footer {
@@ -49,14 +57,6 @@ footer {
       color: #089be4;
     }
   }
-}
-
-code * {
-  font-family: monospace, serif;
-}
-
-pre {
-  margin: 0;
 }
 
 .pure-button {
@@ -128,12 +128,12 @@ table {
     font-family: Helvetica, Arial, sans-serif;
     
     
-    &:first-child {
+    &:first-of-type {
       text-align: right;
       font-weight: 400;
     }
   
-    &:last-child {
+    &:last-of-type {
       text-align: left;
       font-weight: 100;
     }
