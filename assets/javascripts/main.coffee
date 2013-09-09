@@ -34,6 +34,7 @@ App.ApplicationController = Ember.Controller.extend(
 )
 
 App.IndexController = Ember.ObjectController.extend($.extend(
+  needs: "game"
   isLoading: false
   
   actions:
@@ -45,7 +46,7 @@ App.IndexController = Ember.ObjectController.extend($.extend(
       $.post("/game").always(->
         self.set("isLoading", false)
       ).done((data) ->
-        controller = self.controllerFor("game")
+        controller = self.get("controllers.game")
         controller.set("response", data)
         self.transitionToRoute("game")
       )
