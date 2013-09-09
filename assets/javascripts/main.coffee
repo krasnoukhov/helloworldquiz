@@ -49,6 +49,8 @@ App.IndexController = Ember.ObjectController.extend($.extend(
         controller = self.get("controllers.game")
         controller.set("response", data)
         self.transitionToRoute("game")
+      ).fail((xhr, status, error) ->
+        alert("Error #{xhr.status}: #{xhr.statusText}. Try refreshing a page")
       )
       
 , Config))
@@ -94,6 +96,8 @@ App.GameController = Ember.ObjectController.extend($.extend(
         self.transitionToRoute("index")
       else
         self.set("response", data)
+    ).fail((xhr, status, error) ->
+      alert("Error #{xhr.status}: #{xhr.statusText}. Try refreshing a page")
     )
   
   result: (data) ->
@@ -119,6 +123,8 @@ App.GameController = Ember.ObjectController.extend($.extend(
           alert(data.error)
         else
           self.result(data)
+      ).fail((xhr, status, error) ->
+        alert("Error #{xhr.status}: #{xhr.statusText}. Try refreshing a page")
       )
     
     next: ->
