@@ -34,6 +34,7 @@ App.ApplicationController = Ember.Controller.extend(
 )
 
 App.IndexController = Ember.ObjectController.extend($.extend(
+  needs: "game"
   isLoading: false
   
   actions:
@@ -45,7 +46,7 @@ App.IndexController = Ember.ObjectController.extend($.extend(
       $.post("/game").always(->
         self.set("isLoading", false)
       ).done((data) ->
-        controller = self.controllerFor("game")
+        controller = self.get("controllers.game")
         controller.set("response", data)
         self.transitionToRoute("game")
       )
@@ -58,8 +59,13 @@ App.GameController = Ember.ObjectController.extend($.extend(
   correct: null
   waitResponse: null
   
+  game: (->
+    return this.get("waitResponse").game if this.get("waitResponse")
+    return this.get("response").game if this.get("response")
+    {}
+  ).property("response", "waitResponse")
+  
   isLive: (->
-    return true unless this.get("response")
     return false if this.get("waitResponse") && this.get("waitResponse").game.lives == 0
     return false if this.get("response") && this.get("response").game.lives == 0
     return true
@@ -73,7 +79,7 @@ App.GameController = Ember.ObjectController.extend($.extend(
   highlightedSnippet: (->
     return "" unless this.get("response")
     snippet = this.get("response").variant.snippet
-    hljs.highlightAuto(snippet).value
+    $("<div />").html(hljs.highlightAuto(snippet).value).html()
   ).property("response")
   
   load: ->
