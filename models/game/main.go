@@ -6,7 +6,7 @@ import (
   "math/rand"
   "langgame/initializers/redisPool"
   "langgame/models/variant"
-  "github.com/astaxie/beego"
+  "github.com/krasnoukhov/beego"
   "github.com/dchest/uniuri"
   "github.com/garyburd/redigo/redis"
 )

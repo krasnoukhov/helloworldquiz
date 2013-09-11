@@ -7,7 +7,7 @@ import (
   "langgame/initializers/redisPool"
   "langgame/models/game"
   "langgame/models/variant"
-  "github.com/astaxie/beego"
+  "github.com/krasnoukhov/beego"
   "github.com/garyburd/redigo/redis"
 )
 

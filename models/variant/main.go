@@ -7,7 +7,7 @@ import (
   // "crypto/md5"
   "math/rand"
   // "errors"
-  // "github.com/astaxie/beego"
+  // "github.com/krasnoukhov/beego"
   "github.com/kylelemons/go-gypsy/yaml"
 )
 

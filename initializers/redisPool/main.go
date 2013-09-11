@@ -2,7 +2,7 @@ package redisPool
 
 import (
   "time"
-  "github.com/astaxie/beego"
+  "github.com/krasnoukhov/beego"
   "github.com/garyburd/redigo/redis"
 )
 

@@ -6,7 +6,7 @@ import (
   "strings"
   "io/ioutil"
   "langgame/controllers"
-  "github.com/astaxie/beego"
+  "github.com/krasnoukhov/beego"
   "github.com/krasnoukhov/train"
 )
 
