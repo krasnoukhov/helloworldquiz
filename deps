@@ -1,4 +1,4 @@
 curl -s https://raw.github.com/VividCortex/johnny-deps/master/bin/johnny_deps | bash
 go build -o $GOPATH/bin/train github.com/krasnoukhov/train/cmd
-go get github.com/astaxie/bee
+go get github.com/krasnoukhov/bee
 bundle
