@@ -41,7 +41,7 @@ brainfuck:
 c:
   name: C
   variants:
-    - cpp
+    - perl
     - csharp
 chef:
   name: Chef
