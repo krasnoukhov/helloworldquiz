@@ -3,6 +3,9 @@ package controllers
 import (
   "fmt"
   "errors"
+  "net/http"
+  "net/url"
+  "time"
   // "encoding/json"
   "langgame/initializers/redisPool"
   "langgame/models/game"
@@ -25,7 +28,14 @@ type GameResponse struct {
 func (this *GameController) Post() {
   object, err := game.Add()
   if err == nil {
-    this.SetSession("GameObjectId", object.ObjectId)
+    cookie := http.Cookie{ Name: "GameObjectId",
+      Value:    url.QueryEscape(object.ObjectId),
+      Path:     "/",
+      HttpOnly: true,
+      Secure:   false,
+      Expires:  time.Now().Add(time.Duration(31*24*3600) * time.Second) }
+    http.SetCookie(this.Ctx.ResponseWriter, &cookie)
+    
     this.Data["json"] = &GameResponse{ object, game.GetVariant(object), nil, "ready" }
   } else {
     this.Data["json"] = map[string]string{ "error": fmt.Sprint(err) }
@@ -106,10 +116,11 @@ func (this *GameController) Put() {
 }
 
 func Game(this *GameController) (object *game.Object, err error) {
-  objectId := this.GetSession("GameObjectId")
+  cookie, err := this.Ctx.Request.Cookie("GameObjectId")
   
-  if objectId != nil {
-    object, err := game.Get(objectId.(string))
+  if err == nil && cookie.Value != "" {
+    objectId, _ := url.QueryUnescape(cookie.Value)
+    object, err := game.Get(objectId)
     
     if err == nil {
       return object, nil

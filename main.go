@@ -15,8 +15,6 @@ func main() {
   if os.Getenv("GO_ENV") == "prod" {
     beego.RunMode = "prod"
   }
-  // beego.SessionProvider = "redis"
-  // beego.SessionSavePath = beego.AppConfig.String("redis")
   
   // Assets 
   beego.SetStaticPath("/public", "public")
