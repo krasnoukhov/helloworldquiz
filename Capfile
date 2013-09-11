@@ -35,6 +35,6 @@ namespace :deploy do
     run "cd #{current_path} && bee pack #{project}; true"
     run "cd #{current_path} && tar -xzf #{version}.tar.gz"
     run "cd #{current_path} && mv #{version} #{project} && killall #{project}; true"
-    run "cd #{current_path} && bash -c 'GO_ENV=prod nohup ./#{project} > log/out.log 2>log/err.log &' && sleep 1"
+    run "cd #{current_path} && bash -c 'GO_ENV=prod nohup ./#{project} >> log/out.log 2>> log/err.log &' && sleep 1"
   end
 end
