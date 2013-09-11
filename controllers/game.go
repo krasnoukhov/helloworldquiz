@@ -109,7 +109,7 @@ func Game(this *GameController) (object *game.Object, err error) {
   objectId := this.GetSession("GameObjectId")
   
   if objectId != nil {
-    object, err := game.Get(string(objectId.([]byte)[:]))
+    object, err := game.Get(objectId.(string))
     
     if err == nil {
       return object, nil
