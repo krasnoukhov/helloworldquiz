@@ -156,6 +156,11 @@ haskell:
   variants:
     - idris
     - erlang
+hq9plus:
+  name: HQ9+
+  variants:
+    - omgrofl
+    - r
 idris:
   name: Idris
   variants:
