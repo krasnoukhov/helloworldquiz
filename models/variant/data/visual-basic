@@ -1,7 +1,5 @@
-Imports System
-
-Module Application
-    Public Sub Main(args() As String)
-        Console.WriteLine("Hello, world!")
+Class MainForm
+    Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        MessageBox.Show("Hello, world!")
     End Sub
-End Module
+End Class
