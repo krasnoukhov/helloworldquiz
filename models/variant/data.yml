@@ -316,3 +316,13 @@ xtend:
   name: Xtend
   variants:
     - java
+whitespace:
+  name: Whitespace
+  variants:
+    - brainfuck
+    - malbolge
+malbolge:
+  name: Malbolge
+  variants:
+    - brainfuck
+    - shakespeare
