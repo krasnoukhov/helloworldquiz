@@ -1,0 +1,1 @@
+ trace(for $i in ("hello", "world", "!")["&"] return for $j in ($i, " ") return $j, "")
