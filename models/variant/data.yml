@@ -154,8 +154,12 @@ groovy:
 haskell:
   name: Haskell
   variants:
-    - common-lisp
+    - idris
     - erlang
+idris:
+  name: Idris
+  variants:
+    - haskell
 java:
   name: Java
   variants:
@@ -199,7 +203,7 @@ ocaml:
   name: OCaml
   variants:
     - fsharp
-    - scala
+    - sml
 omgrofl:
   name: Omgrofl
   variants:
@@ -279,6 +283,11 @@ smalltalk:
   variants:
     - prolog
     - go
+sml:
+  name: Standard ML
+  variants:
+    - ocaml
+    - fsharp
 supercollider:
   name: SuperCollider
   variants:
