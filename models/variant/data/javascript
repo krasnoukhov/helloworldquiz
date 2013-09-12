@@ -1,4 +1,4 @@
-hello = function() {
+var hello = function () {
   alert("Hello World!");
 };
 
