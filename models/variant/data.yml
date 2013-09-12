@@ -156,6 +156,11 @@ haskell:
   variants:
     - idris
     - erlang
+homespring:
+  name: HomeSpring
+  variants:
+    - shakespeare
+    - smalltalk
 hq9plus:
   name: HQ9+
   variants:
@@ -312,7 +317,16 @@ visual-basic:
   name: Visual Basic
   variants:
     - delphi
+xpath2:
+  name: XPath 2.0+
+  variants:
+    - xquery
+xquery:
+  name: XQuery
+  variants:
+    - xpath2
 xtend:
   name: Xtend
   variants:
     - java
+    
