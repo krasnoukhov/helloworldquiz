@@ -1,5 +1,5 @@
-Class Form1
-    Public Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load()
-        MsgBox("Hello, world!")
+Class MainForm
+    Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        MessageBox.Show("Hello, world!")
     End Sub
 End Class
