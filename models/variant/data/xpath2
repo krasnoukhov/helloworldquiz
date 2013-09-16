@@ -1,1 +1,1 @@
- trace(for $i in ("hello", "world", "!")["&"] return for $j in ($i, " ") return $j, "")
+concat( string-join( (<Hello/>,<World/>)/name(), " "), "!")
