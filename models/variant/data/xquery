@@ -1,1 +1,12 @@
- trace(for $i in ("hello", "world", "!") for $j in ($i, " ") return $j, "")
+concat(
+  string-join(
+    for $i in
+      <_>
+        <Hello/>
+        <World/>
+      </_>/*/name()
+    order by $i ascending
+    return $i,
+    " "
+  ),"!"
+)
