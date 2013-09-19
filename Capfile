@@ -37,9 +37,17 @@ namespace :deploy do
     run "cd #{current_path} && mv #{version} #{project}"
   end
   
-  task :reload, roles: :web do
+  task :stop, roles: :web do
     run "cd #{current_path} && killall #{project}; true"
+  end
+  
+  task :start, roles: :web do
     run "cd #{current_path} && bash -c 'GO_ENV=prod nohup ./#{project} >> log/out.log 2>> log/err.log &' && sleep 1"
+  end
+  
+  task :reload, roles: :web do
+    stop
+    start
   end
   
   task :restart, roles: :web do
