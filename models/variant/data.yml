@@ -127,6 +127,11 @@ fantom:
   variants:
     - java
     - csharp
+fimpp:
+  name: FiM++
+  variants:
+    - shakespeare
+    - chef
 forth:
   name: Forth
   variants:
