@@ -188,7 +188,7 @@ javascript:
 logtalk:
   name: Logtalk
   variants:
-    - prolog
+    - scala
     - smalltalk
 lolcode:
   name: LOLCODE
