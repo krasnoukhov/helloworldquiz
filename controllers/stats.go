@@ -3,8 +3,8 @@ package controllers
 import (
   "fmt"
   // "math"
-  "langgame/models/variant"
-  "langgame/initializers/redisPool"
+  "helloworldquiz/models/variant"
+  "helloworldquiz/initializers/redisPool"
   "github.com/krasnoukhov/beego"
   "github.com/garyburd/redigo/redis"
 )

@@ -5,7 +5,7 @@ default_run_options[:pty] = true
 
 # Application
 set   :application, "helloworldquiz.com"
-set   :project, "langgame"
+set   :project, "helloworldquiz"
 set   :domain, "helloworldquiz.com"
 set   :deploy_to, "/home/krasnoukhov/#{project}/"
 role  :web, domain
@@ -29,7 +29,6 @@ after "deploy:update", "deploy:cleanup"
 
 namespace :deploy do
   task :build, roles: :web do
-    # run "cd #{current_path} && ln -s `pwd` ${HOME}/.go/src/langgame && true"
     version = capture("cd #{current_path}/../releases/ && ls -t | head -n 1").strip
     run "cd #{current_path} && ./deps && train"
     run "cd #{current_path} && bee pack #{project}; true"

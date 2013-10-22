@@ -7,9 +7,9 @@ import (
   "net/url"
   "time"
   // "encoding/json"
-  "langgame/initializers/redisPool"
-  "langgame/models/game"
-  "langgame/models/variant"
+  "helloworldquiz/initializers/redisPool"
+  "helloworldquiz/models/game"
+  "helloworldquiz/models/variant"
   "github.com/krasnoukhov/beego"
   "github.com/garyburd/redigo/redis"
 )

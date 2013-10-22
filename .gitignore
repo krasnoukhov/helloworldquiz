@@ -22,7 +22,7 @@ _testmain.go
 *.exe
 
 # Project
-langgame
+helloworldquiz
 .DS_Store
 css/.sass-cache
 dump.rdb

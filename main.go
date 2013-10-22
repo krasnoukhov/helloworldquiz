@@ -5,7 +5,7 @@ import (
   "net/http"
   "strings"
   "io/ioutil"
-  "langgame/controllers"
+  "helloworldquiz/controllers"
   "github.com/krasnoukhov/beego"
   "github.com/krasnoukhov/train"
 )
