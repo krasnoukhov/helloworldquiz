@@ -1,0 +1,5 @@
+%!
+/Times-Roman 12 selectfont
+20 20 moveto
+(Hello, world!) show
+showpage
