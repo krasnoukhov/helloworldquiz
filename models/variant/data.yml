@@ -77,6 +77,11 @@ common-lisp:
   variants:
     - elixir
     - clojure
+context:
+  name: ConTeXt
+  variants:
+    - tex
+    - latex
 d:
   name: D
   variants:
@@ -185,6 +190,11 @@ javascript:
   variants:
     - java
     - coffeescript
+latex:
+  name: LaTeX
+  variants:
+    - tex
+    - context
 logtalk:
   name: Logtalk
   variants:
@@ -313,6 +323,11 @@ tcl:
   variants:
     - common-lisp
     - erlang
+tex:
+  name: TeX
+  variants:
+    - latex
+    - context
 vala:
   name: Vala
   variants:
