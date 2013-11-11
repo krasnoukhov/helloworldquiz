@@ -9,6 +9,8 @@
     <meta property="og:description" content="{{ .description }}"/>
     <meta property="og:url" content="http://{{ .host }}"/>
     <meta property="og:image" content="http://{{ .host }}/public/icon.png"/>
+    <meta name="signet:authors" content="Dmitry Krasnoukhov, Slava Zagorodniy">
+    <meta name="signet:links" content="https://github.com/krasnoukhov/helloworldquiz, https://twitter.com/krasnoukhov, https://twitter.com/kr3ved">
     
     <script type="text/javascript">
       var Config = {
