@@ -4,8 +4,13 @@ Config.url = "http://#{Config.host}"
 App.Router.map ->
   this.route("game")
   this.route("stats")
+  this.route("redirect", path: "*path")
 
 App.IndexRoute = Ember.Route.extend()
+App.RedirectRoute = Ember.Route.extend(
+  afterModel: ->
+    this.transitionTo("index")
+)
 App.GameRoute = Ember.Route.extend(
   setupController: (controller) ->
     controller.load()
