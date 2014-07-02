@@ -323,6 +323,11 @@ supercollider:
   variants:
     - processing
     - matlab
+swift:
+  name: Swift
+  variants:
+    - haskell
+    - objective-c
 tcl:
   name: Tcl
   variants:
@@ -354,4 +359,3 @@ xtend:
   name: Xtend
   variants:
     - java
-    
