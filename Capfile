@@ -7,7 +7,7 @@ default_run_options[:pty] = true
 set   :application, "helloworldquiz.com"
 set   :project, "helloworldquiz"
 set   :domain, "helloworldquiz.com"
-set   :deploy_to, "/home/krasnoukhov/#{project}/"
+set   :deploy_to, "/home/helloworldquiz/#{project}/"
 role  :web, domain
 
 # Source
@@ -18,7 +18,7 @@ set   :repository_cache, "git"
 set   :deploy_via, :remote_cache
 
 # Options
-set   :user, "krasnoukhov"
+set   :user, "helloworldquiz"
 set   :rvm_ruby_string, `cat .ruby-version`
 set   :rvm_type, :user
 set   :use_sudo, false
@@ -35,20 +35,20 @@ namespace :deploy do
     run "cd #{current_path} && tar -xzf #{version}.tar.gz"
     run "cd #{current_path} && mv #{version} #{project}"
   end
-  
+
   task :stop, roles: :web do
     run "cd #{current_path} && killall #{project}; true"
   end
-  
+
   task :start, roles: :web do
     run "cd #{current_path} && bash -c 'GO_ENV=prod nohup ./#{project} >> log/out.log 2>> log/err.log &' && sleep 1"
   end
-  
+
   task :reload, roles: :web do
     stop
     start
   end
-  
+
   task :restart, roles: :web do
     build
     reload
