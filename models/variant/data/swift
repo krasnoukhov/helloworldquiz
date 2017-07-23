@@ -1,2 +1,2 @@
 let hello = "hello world"
-println(hello)
+print(hello)
