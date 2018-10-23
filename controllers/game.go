@@ -131,3 +131,4 @@ func Game(this *GameController) (object *game.Object, err error) {
     return nil, errors.New("No game")
   }
 }
+
